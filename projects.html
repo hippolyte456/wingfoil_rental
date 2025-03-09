@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - My GitHub Pages Website</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">MyWebsite</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="gradient-text">My Projects</h1>
+                <p>A showcase of my recent work and projects</p>
+            </div>
+        </section>
+
+        <section class="projects-section">
+            <div class="container">
+                <div class="projects-filter" data-aos="fade-up">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="web">Web Development</button>
+                    <button class="filter-btn" data-filter="design">UI/UX Design</button>
+                    <button class="filter-btn" data-filter="app">Mobile Apps</button>
+                </div>
+
+                <div class="projects-grid">
+                    <div class="project-card" data-category="web" data-aos="fade-up">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/600x400" alt="E-commerce Website">
+                        </div>
+                        <div class="project-content">
+                            <h3>E-commerce Website</h3>
+                            <p>A fully responsive e-commerce website with shopping cart functionality.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">HTML</span>
+                                <span class="project-tag">CSS</span>
+                                <span class="project-tag">JavaScript</span>
+                                <span class="project-tag">React</span>
+                            </div>
+                            <a href="#" class="btn secondary-btn">View Project</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="design" data-aos="fade-up" data-aos-delay="100">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/600x400" alt="Mobile App UI Design">
+                        </div>
+                        <div class="project-content">
+                            <h3>Mobile App UI Design</h3>
+                            <p>A clean and modern UI design for a fitness tracking mobile application.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">UI/UX</span>
+                                <span class="project-tag">Figma</span>
+                                <span class="project-tag">Mobile</span>
+                            </div>
+                            <a href="#" class="btn secondary-btn">View Project</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="200">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/600x400" alt="Portfolio Website">
+                        </div>
+                        <div class="project-content">
+                            <h3>Portfolio Website</h3>
+                            <p>A personal portfolio website with smooth animations and responsive design.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">HTML</span>
+                                <span class="project-tag">CSS</span>
+                                <span class="project-tag">JavaScript</span>
+                            </div>
+                            <a href="#" class="btn secondary-btn">View Project</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="app" data-aos="fade-up" data-aos-delay="300">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/600x400" alt="Weather App">
+                        </div>
+                        <div class="project-content">
+                            <h3>Weather App</h3>
+                            <p>A mobile app that provides real-time weather information and forecasts.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">React Native</span>
+                                <span class="project-tag">API</span>
+                                <span class="project-tag">Mobile</span>
+                            </div>
+                            <a href="#" class="btn secondary-btn">View Project</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="design" data-aos="fade-up" data-aos-delay="400">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/600x400" alt="Brand Identity Design">
+                        </div>
+                        <div class="project-content">
+                            <h3>Brand Identity Design</h3>
+                            <p>A complete brand identity design including logo, color palette, and typography.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Branding</span>
+                                <span class="project-tag">Illustrator</span>
+                                <span class="project-tag">Design</span>
+                            </div>
+                            <a href="#" class="btn secondary-btn">View Project</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="500">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/600x400" alt="Blog Website">
+                        </div>
+                        <div class="project-content">
+                            <h3>Blog Website</h3>
+                            <p>A responsive blog website with a content management system.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">HTML</span>
+                                <span class="project-tag">CSS</span>
+                                <span class="project-tag">JavaScript</span>
+                                <span class="project-tag">Node.js</span>
+                            </div>
+                            <a href="#" class="btn secondary-btn">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section" data-aos="fade-up">
+            <h2>Have a Project in Mind?</h2>
+            <p>Let's discuss how I can help bring your ideas to life!</p>
+            <a href="contact.html" class="btn primary-btn">Get in Touch</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <p>A simple website created with GitHub Pages, featuring modern design and cool animations.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 My GitHub Pages Website. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Project filtering
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    // Get filter value
+                    const filterValue = this.getAttribute('data-filter');
+
+                    // Filter projects
+                    projectCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 100);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
