@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="text-center mb-4">Location de Matériel de WingFoil</h1>
+        <p class="lead text-center">Découvrez notre sélection d'équipements de qualité pour votre prochaine session de wingfoil</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Filtrer par type</h5>
+            </div>
+            <div class="card-body">
+                <div class="form-check">
+                    <input class="form-check-input filter-type" type="checkbox" value="wing" id="filterWing" checked>
+                    <label class="form-check-label" for="filterWing">
+                        Wings
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input filter-type" type="checkbox" value="board" id="filterBoard" checked>
+                    <label class="form-check-label" for="filterBoard">
+                        Planches
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input filter-type" type="checkbox" value="foil" id="filterFoil" checked>
+                    <label class="form-check-label" for="filterFoil">
+                        Foils
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="row" id="equipment-grid">
+            {% for item in equipment %}
+            <div class="col-md-4 mb-4 equipment-item" data-type="{{ item.type }}">
+                <div class="card h-100">
+                    {% if item.image_url %}
+                    <img src="{{ item.image_url }}" class="card-img-top" alt="{{ item.name }}">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='img/default-equipment.jpg') }}" class="card-img-top" alt="{{ item.name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <p class="card-text">{{ item.description[:100] }}...</p>
+                        <p class="card-text">
+                            <small class="text-muted">Taille: {{ item.size }}</small>
+                        </p>
+                        <p class="card-text">
+                            <strong>{{ item.price_per_day }}€ / jour</strong>
+                        </p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="{{ url_for('equipment_detail', id=item.id) }}" class="btn btn-primary">Voir détails</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %} 
