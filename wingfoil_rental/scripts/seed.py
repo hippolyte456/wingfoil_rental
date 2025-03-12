@@ -33,7 +33,7 @@ def seed_database():
                 'size': '5m',
                 'price_per_day': 45,
                 'available': True,
-                'image_url': 'equipment/duotone_unit_5m.jpg'
+                'image_url': 'img/equipment/test.png'
             },
             {
                 'name': 'F-One Strike 4m',
@@ -42,7 +42,7 @@ def seed_database():
                 'size': '4m',
                 'price_per_day': 40,
                 'available': True,
-                'image_url': 'equipment/fone_strike_4m.jpg'
+                'image_url': 'img/equipment/test.png'
             },
             {
                 'name': 'Fanatic Sky Wing 150L',
@@ -51,7 +51,7 @@ def seed_database():
                 'size': '150L',
                 'price_per_day': 55,
                 'available': True,
-                'image_url': 'equipment/fanatic_sky_150.jpg'
+                'image_url': 'img/equipment/test.png'
             },
             {
                 'name': 'Starboard Hyperfoil 95L',
@@ -60,7 +60,7 @@ def seed_database():
                 'size': '95L',
                 'price_per_day': 60,
                 'available': True,
-                'image_url': 'equipment/starboard_hyper_95.jpg'
+                'image_url': 'img/equipment/test.png'
             },
             {
                 'name': 'GoFoil Iwa',
@@ -69,7 +69,7 @@ def seed_database():
                 'size': 'M',
                 'price_per_day': 65,
                 'available': True,
-                'image_url': 'equipment/gofoil_iwa.jpg'
+                'image_url': 'img/equipment/test.png'
             }
         ]
 
