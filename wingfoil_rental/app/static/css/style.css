@@ -127,7 +127,7 @@ footer {
 }
 
 .hero-section {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
                     url("../img/base/intro.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -138,9 +138,19 @@ footer {
 }
 
 .hero-content {
-    background-color: rgba(0, 0, 0, 0.6);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     padding: 2rem;
-    border-radius: 10px;
+}
+
+.hero-content .lead {
+    font-style: italic;
+}
+
+.hero-content .icons-row {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
 }
 
 .value-item {
