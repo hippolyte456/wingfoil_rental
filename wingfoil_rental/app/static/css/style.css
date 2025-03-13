@@ -15,11 +15,29 @@ body {
 /* Navigation */
 .navbar {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: white !important;
 }
 
 .navbar-brand {
     font-weight: bold;
     font-size: 1.5rem;
+    color: var(--primary-color) !important;
+}
+
+.navbar .nav-link {
+    color: #333 !important;
+}
+
+.navbar .nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+.navbar-toggler {
+    border-color: #333;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(51, 51, 51, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 /* Cards */
@@ -106,4 +124,30 @@ footer {
 .badge-unavailable {
     background-color: #dc3545;
     color: white;
+}
+
+.hero-section {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                    url("../img/base/intro.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    padding: 100px 0;
+    margin-bottom: 2rem;
+}
+
+.hero-content {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.value-item {
+    margin-bottom: 1rem;
+}
+
+.value-item i {
+    color: #ffc107;
+    margin-right: 0.5rem;
 } 
