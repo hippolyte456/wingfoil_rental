@@ -44,11 +44,7 @@
             {% for item in equipment %}
             <div class="col-md-4 mb-4 equipment-item" data-type="{{ item.type }}">
                 <div class="card h-100">
-                    {% if item.image_url %}
-                    <img src="{{ item.image_url }}" class="card-img-top" alt="{{ item.name }}">
-                    {% else %}
-                    <img src="{{ url_for('static', filename='img/default-equipment.jpg') }}" class="card-img-top" alt="{{ item.name }}">
-                    {% endif %}
+                    <img src="{{ url_for('static', filename=item.image_url) }}" class="card-img-top" alt="{{ item.name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ item.name }}</h5>
                         <p class="card-text">{{ item.description[:100] }}...</p>
