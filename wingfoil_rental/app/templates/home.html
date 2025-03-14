@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h2 class="mb-4">Bienvenue sur Wing4All</h2>
+            <p class="lead mb-4">
+                Découvrez le wingfoil en toute simplicité avec notre service de location de matériel haut de gamme.
+            </p>
+            <div class="row mb-5">
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <i class="fas fa-wind fa-3x mb-3 text-primary"></i>
+                            <h3>Location de Matériel</h3>
+                            <p>Accédez à notre sélection d'équipements de qualité.</p>
+                            <a href="{{ url_for('equipment_list') }}" class="btn btn-primary">Voir les équipements</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <i class="fas fa-graduation-cap fa-3x mb-3 text-primary"></i>
+                            <h3>Conseils Personnalisés</h3>
+                            <p>Bénéficiez de notre expertise pour choisir votre matériel.</p>
+                            {% if not current_user.is_authenticated %}
+                            <a href="{{ url_for('register') }}" class="btn btn-primary">Rejoignez-nous</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

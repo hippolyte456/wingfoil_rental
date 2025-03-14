@@ -9,6 +9,10 @@ app = create_app()
 
 @app.route('/')
 def home():
+    return render_template('home.html')
+
+@app.route('/equipment')
+def equipment_list():
     equipment = Equipment.query.all()
     return render_template('equipment/index.html', equipment=equipment)
 
