@@ -17,7 +17,7 @@ body {
     width: 100%;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     background-color: white !important;
-    padding: 1rem 1rem;
+    padding: 1.5rem 1rem;
 }
 
 .navbar-brand {
@@ -189,4 +189,17 @@ footer {
 .auth-container {
     max-width: 600px;
     margin: 0 auto;
+}
+
+.navbar-nav.ms-auto {
+    margin-left: auto;
+}
+
+.homepage-background {
+    background-image: url('../img/base/intro.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
 } 
