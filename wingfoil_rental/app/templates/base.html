@@ -25,7 +25,19 @@
                         <a class="nav-link" href="{{ url_for('home') }}">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('equipment_list') }}">Équipements</a>
+                        <a class="nav-link" href="{{ url_for('formules') }}">Nos Formules</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('conseils') }}">Conseils</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('equipment_list') }}">Locations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('equipe') }}">Équipe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
                     </li>
                     {% if current_user.is_authenticated %}
                     <li class="nav-item">
@@ -53,9 +65,6 @@
             </div>
         </div>
     </nav>
-
-    <!-- Hero Section -->
-    {% include 'partials/hero.html' %}
 
     <main class="container mt-4">
         {% with messages = get_flashed_messages(with_categories=true) %}
