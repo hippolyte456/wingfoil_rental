@@ -1,82 +1,30 @@
-# My GitHub Pages Website
+## Objectifs de site:
+- attractivité : augmenter l'impression de professionalisme
+- visibilité 
+- contacts pour prise d'informations
+- réservations en avance ??
 
-A modern, responsive website with cool animations, designed to be hosted on GitHub Pages.
 
-## Features
+## Client idéal :
+Type 1 : le débutant en wingfoil / qui a déjà fait un peu de voile mais qui hésite à s'y mettre / jeune, qui a pas beaucoup d'argent qui préfère pouvoir en faire sans être tatillons sur la qualité. 
 
-- Responsive design that works on all devices (mobile, tablet, desktop)
-- Modern and clean UI with smooth animations
-- Interactive elements and page transitions
-- Optimized for GitHub Pages hosting
-- Cross-browser compatible
+Type 2 : le petit groupe qui s'automotivent pour essayer. Qui veut faire ça sur un coup de tête.
 
-## Pages
+Type 3 : le rideur intermédiaire qui n'a pas son matos, et qui veut se fire une séance pas trop cher.
 
-- **Home**: Landing page with animated elements and feature highlights
-- **About**: Information about the website owner with skills and timeline
-- **Projects**: Portfolio showcase with filterable project cards
-- **Contact**: Contact form and information
 
-## Technologies Used
+## Structure du projet.
+- Accueil :
+Faire le filtres entre les vrais clients et ceux à qui l'offre ne correspond pas = valeurs de l'entreprise
 
-- HTML5
-- CSS3 (with CSS variables and flexbox/grid layouts)
-- JavaScript (ES6+)
-- [AOS](https://michalsnik.github.io/aos/) - Animate On Scroll library
-- [Font Awesome](https://fontawesome.com/) - Icons
-- GitHub Pages for hosting
+- A propos :
+Les différentes offres... donner envie de passer à l'action pour le client... direction vers une deux deux autres pages en fonction du besoin :
 
-## Animations
+- Apprentissage : 
+Lien vers les différentes ressources
 
-The website includes various animations:
-- Fade-in and slide-up animations on page load
-- Hover effects on buttons and cards
-- Floating elements in the hero section
-- Scroll-triggered animations using AOS library
-- Page transition effects between pages
-- Typing animation effect
-- Gradient text animation
+- Locations (au minimum pour la présentation du matos)
+Pour les gens prévoyant et plus précautionneux (notamment le client type 3)
 
-## How to Deploy on GitHub Pages
-
-1. Fork this repository or create a new one
-2. Clone the repository to your local machine
-3. Make any desired changes to the content or styling
-4. Commit and push your changes to GitHub
-5. Go to your repository settings on GitHub
-6. Scroll down to the "GitHub Pages" section
-7. Select the branch you want to deploy (usually `main` or `master`)
-8. Click "Save"
-9. Your site will be published at `https://yourusername.github.io/repository-name/`
-
-## Customization
-
-You can easily customize this website by:
-
-- Changing the color scheme in the CSS variables (in `css/styles.css`)
-- Updating the content in the HTML files
-- Adding your own projects to the projects page
-- Replacing placeholder images with your own
-- Modifying animations in the `css/animations.css` file
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Opera (latest)
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## Credits
-
-- Placeholder images from [Placeholder.com](https://placeholder.com/)
-- Icons from [Font Awesome](https://fontawesome.com/)
-- Animation library: [AOS](https://michalsnik.github.io/aos/)
-
----
-
-Created with ❤️ for GitHub Pages
+- Contact:
+Pour le client de dernière minute
