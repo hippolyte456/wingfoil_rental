@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 /* Variables */
 :root {
     --primary-color: #0066cc;
@@ -7,7 +9,7 @@
 
 /* General Styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
     background-color: #f4f4f4;
 }
@@ -47,6 +49,7 @@ body {
     transition: transform 0.2s;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     border: 1px solid var(--primary-color);
+    background-color: transparent;
 }
 
 .card:hover {
@@ -182,7 +185,7 @@ footer {
 .container {
     max-width: 960px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 2rem;
 }
 
 /* Specific Pages */
@@ -202,4 +205,40 @@ footer {
     background-repeat: no-repeat;
     height: 100vh;
     width: 100%;
-} 
+}
+
+.content-text {
+    color: #000000;
+}
+
+.link-title {
+    font-size: 1.5rem;
+    color: #000000;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    display: block;
+    padding: 15px 10px;
+}
+
+.link-title:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+.btn-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-link:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.homepage-container {
+    padding: 0 3rem; /* Increase padding for better spacing */
+}
+

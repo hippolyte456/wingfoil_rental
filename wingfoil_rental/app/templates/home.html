@@ -3,41 +3,37 @@
 {% block title %}Accueil{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container-fluid content-text homepage-container">
     <div class="row justify-content-center">
-        <div class="col-md-8 text-center">
+        <div class="col-12 text-center">
             <h2 class="mb-4">Bienvenue sur Wing4All</h2>
             <p class="lead mb-4">
-                Découvrez le wingfoil en toute simplicité avec notre service de location de matériel haut de gamme.
+                Envie de découvrir le wingfoil sans vous ruiner ? Avec Wing4All, profitez d’un matériel d’occasion à prix mini pour tester ce sport en toute liberté !  
+                Que ce soit pour une session entre ami(e)s ou pour vous initier avant d’investir, louez facilement et vivez des sensations uniques sur l’eau, sans contrainte.  
+                Accessible, flexible et fun : Wing4All, c’est la liberté de naviguer sans engagement !  
             </p>
-            <p class="lead mb-4">
-                <!-- Add any additional text from the hero section here -->
-            </p>
-            <div class="row mb-5">
-                <div class="col-md-6">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <i class="fas fa-wind fa-3x mb-3 text-primary"></i>
-                            <h3>Location de Matériel</h3>
-                            <p>Accédez à notre sélection d'équipements de qualité.</p>
-                            <a href="{{ url_for('equipment_list') }}" class="btn btn-primary">Voir les équipements</a>
-                        </div>
-                    </div>
+            
+            <div class="row mb-5 justify-content-center">
+                <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-3">
+                    <a href="{{ url_for('conseils') }}" class="link-title text-decoration-none d-block h3 py-3">
+                        Besoin de conseils ?
+                    </a>
                 </div>
-                <div class="col-md-6">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <i class="fas fa-graduation-cap fa-3x mb-3 text-primary"></i>
-                            <h3>Conseils Personnalisés</h3>
-                            <p>Bénéficiez de notre expertise pour choisir votre matériel.</p>
-                            {% if not current_user.is_authenticated %}
-                            <a href="{{ url_for('register') }}" class="btn btn-primary">Rejoignez-nous</a>
-                            {% endif %}
-                        </div>
-                    </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-3">
+                    <a href="{{ url_for('equipment_list') }}" class="link-title text-decoration-none d-block h3 py-3">
+                        Voir les équipements
+                    </a>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-3">
+                    <a href="{{ url_for('contact') }}" class="link-title text-decoration-none d-block h3 py-3">
+                        Contactez-nous
+                    </a>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>
-{% endblock %} 
+{% endblock %}
