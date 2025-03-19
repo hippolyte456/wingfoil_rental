@@ -101,5 +101,29 @@ def logout():
     flash('Vous avez été déconnecté', 'info')
     return redirect(url_for('home'))
 
+@app.route('/conseils')
+def conseils():
+    return render_template('conseils.html')
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    if request.method == 'POST':
+        # Logique pour traiter le formulaire de contact
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+        # Vous pouvez ajouter ici la logique pour envoyer un email ou enregistrer le message
+        flash('Votre message a été envoyé avec succès!', 'success')
+        return redirect(url_for('contact'))
+    return render_template('contact.html')
+
+@app.route('/equipe')
+def equipe():
+    return render_template('equipe.html')
+
+@app.route('/formules')
+def formules():
+    return render_template('formules.html')
+
 if __name__ == '__main__':
     app.run(debug=True) 

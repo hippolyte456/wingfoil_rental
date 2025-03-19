@@ -1,21 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 /* Variables */
 :root {
     --primary-color: #0066cc;
     --secondary-color: #f8f9fa;
-    --accent-color: #ffd700;
+    --accent-color: #0056b3;
 }
 
 /* General Styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
     background-color: #f4f4f4;
 }
 
 /* Navigation */
 .navbar {
+    width: 100%;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     background-color: white !important;
+    padding: 1.5rem 1rem;
 }
 
 .navbar-brand {
@@ -44,10 +48,16 @@ body {
 .card {
     transition: transform 0.2s;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid var(--primary-color);
+    background-color: transparent;
 }
 
 .card:hover {
     transform: translateY(-5px);
+}
+
+.card-title {
+    color: var(--primary-color);
 }
 
 .card-img-top {
@@ -67,8 +77,8 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
 }
 
 /* Forms */
@@ -126,6 +136,7 @@ footer {
     color: white;
 }
 
+/* Hero Section */
 .hero-section {
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
                     url("../img/base/intro.png");
@@ -133,7 +144,7 @@ footer {
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
-    padding: 100px 0;
+    padding: 150px 0;
     margin-bottom: 2rem;
 }
 
@@ -153,6 +164,14 @@ footer {
     border-radius: 50px;
 }
 
+.resource-card {
+    transition: transform 0.2s;
+    background-color: #f8f9fa;
+}
+.resource-card:hover {
+    transform: translateY(-5px);
+}
+
 .value-item {
     margin-bottom: 1rem;
 }
@@ -160,4 +179,70 @@ footer {
 .value-item i {
     color: #ffc107;
     margin-right: 0.5rem;
-} 
+}
+
+/* Centering Content */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Specific Pages */
+.auth-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.navbar-nav.ms-auto {
+    margin-left: auto;
+}
+
+.homepage-background {
+    background-image: url('../img/base/intro.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+}
+
+.content-text {
+    color: #000000;
+}
+
+.link-title {
+    font-size: 1.5rem;
+    color: #000000;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    display: block;
+    padding: 15px 10px;
+}
+
+.link-title:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+.btn-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-link:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.homepage-container {
+    padding: 0 3rem; /* Increase padding for better spacing */
+}
+
+strong {
+    font-weight: bold;
+}
+

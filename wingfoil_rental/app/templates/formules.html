@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %} Formules{% endblock %}
+
+{% block content %}
+
+    <div class="container py-4">
+        <h1 class="text-center mb-5">Quelle formule est faite pour vous ?</h1>  
+        <p class="text-center lead">
+            <strong>{% include 'texts/formules_intro.txt' %}</strong>
+        </p>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4" style="background-color: #f8f9fa;">
+                    <div class="card-body">
+                        <h5 class="card-title">Formule Débutant</h5>
+                        <p class="card-text"><strong>{% include 'texts/formule_debutant.txt' %}</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4" style="background-color: #f8f9fa;">
+                    <div class="card-body">
+                        <h5 class="card-title">Formule Groupe</h5>
+                        <p class="card-text"><strong>{% include 'texts/formule_groupe.txt' %}</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4" style="background-color: #f8f9fa;">
+                    <div class="card-body">
+                        <h5 class="card-title">Formule Intermédiaire</h5>
+                        <p class="card-text"><strong>{% include 'texts/formule_intermediaire.txt' %}</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} 

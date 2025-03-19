@@ -26,51 +26,24 @@ def seed_database():
 
         # Liste des équipements de wingfoil
         equipments = [
-            {
-                'name': 'Duotone Unit Wing 5m',
-                'description': 'Aile de wingfoil polyvalente, parfaite pour débuter et progresser. Excellente stabilité et facilité de prise en main.',
-                'type': 'wing',
-                'size': '5m',
-                'price_per_day': 45,
-                'available': True,
-                'image_url': 'img/equipment/test.png'
-            },
-            {
-                'name': 'F-One Strike 4m',
-                'description': 'Aile compacte et légère, idéale pour les vents forts. Grande plage d\'utilisation.',
-                'type': 'wing',
-                'size': '4m',
-                'price_per_day': 40,
-                'available': True,
-                'image_url': 'img/equipment/test.png'
-            },
-            {
-                'name': 'Fanatic Sky Wing 150L',
-                'description': 'Board stable et polyvalente, parfaite pour l\'apprentissage et la progression.',
-                'type': 'board',
-                'size': '150L',
-                'price_per_day': 55,
-                'available': True,
-                'image_url': 'img/equipment/test.png'
-            },
-            {
-                'name': 'Starboard Hyperfoil 95L',
-                'description': 'Board compacte pour riders avancés, très réactive et maniable.',
-                'type': 'board',
-                'size': '95L',
-                'price_per_day': 60,
-                'available': True,
-                'image_url': 'img/equipment/test.png'
-            },
-            {
-                'name': 'GoFoil Iwa',
-                'description': 'Foil polyvalent, stable et progressif. Idéal pour débuter et progresser.',
-                'type': 'foil',
-                'size': 'M',
-                'price_per_day': 65,
-                'available': True,
-                'image_url': 'img/equipment/test.png'
-            }
+            {"type": "Planche", "name": "gong 110L", "description": "", "size": "", 
+             "price_per_day": 0, "available": True, "image_url": "img/equipment/board_hype.png"},
+            {"type": "Planche", "name": "gong 130L", "description": "", "size": "",
+             "price_per_day": 0, "available": True, "image_url": "img/equipment/board_hype.png"},
+            {"type": "Planche", "name": "AFS 90L", "description": "", "size": "",
+             "price_per_day": 0, "available": True, "image_url": "img/equipment/board_AFS.png"},
+            {"type": "Planche", "name": "gong 80L", "description": "", "size": "",
+             "price_per_day": 0, "available": True, "image_url": "img/equipment/board_hype.png"},
+            {"type": "Wing", "name": "Takoon 3m", "description": "", "size": "3m",
+             "price_per_day": 0, "available": True, "image_url": "img/equipment/wing_takoon.png"},
+            {"type": "Wing", "name": "Zeeko 4m", "description": "", "size": "4m",
+             "price_per_day": 0, "available": True, "image_url": "img/equipment/wing_zeeko.png"},
+            {"type": "Wing", "name": "Takoon 6m", "description": "", "size": "6m",
+             "price_per_day": 0, "available": True, "image_url": "img/equipment/wing_takoon.png"},
+            {"type": "Wing", "name": "Swing 5m", "description": "", "size": "5m",
+             "price_per_day": 0, "available": True, "image_url": "img/equipment/wing_swing.png"},
+            {"type": "Wing", "name": "Neutra 4m", "description": "", "size": "4m",
+             "price_per_day": 0, "available": True, "image_url": "img/equipment/wing_takoon.png"},
         ]
 
         # Ajoute les équipements

@@ -22,7 +22,6 @@
                     <ul class="list-unstyled">
                         <li><strong>Type:</strong> {{ equipment.type|title }}</li>
                         <li><strong>Taille:</strong> {{ equipment.size }}</li>
-                        <li><strong>Prix par jour:</strong> <span class="price-tag">{{ equipment.price_per_day }}€</span></li>
                         <li>
                             <strong>Disponibilité:</strong>
                             {% if equipment.available %}
@@ -40,7 +39,6 @@
                 <div class="card-body">
                     <h5 class="card-title">Réserver cet équipement</h5>
                     <form action="{{ url_for('make_reservation', equipment_id=equipment.id) }}" method="POST">
-                        <input type="hidden" id="price_per_day" value="{{ equipment.price_per_day }}">
                         <div class="mb-3">
                             <label for="start_date" class="form-label">Date de début</label>
                             <input type="date" class="form-control" id="start_date" name="start_date" required>
