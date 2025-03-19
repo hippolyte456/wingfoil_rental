@@ -18,7 +18,7 @@ Type 3 : le rideur intermédiaire qui n'a pas son matos, et qui veut se fire une
 Faire le filtres entre les vrais clients et ceux à qui l'offre ne correspond pas = valeurs de l'entreprise
 
 - A propos :
-Les différentes offres... donner envie de passer à l'action pour le client... direction vers une deux deux autres pages en fonction du besoin :
+Les différentes offres... donner envie de passer à l'action pour le client... direction vers une des deux autres pages en fonction du besoin :
 
 - Apprentissage : 
 Lien vers les différentes ressources

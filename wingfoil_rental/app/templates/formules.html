@@ -3,36 +3,38 @@
 {% block title %} Formules{% endblock %}
 
 {% block content %}
-<div class="container py-4">
-    <h1 class="text-center mb-5"> Formules</h1>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Formule Débutant</h5>
-                    <p class="card-text">Location à l'heure pour les débutants souhaitant découvrir le wingfoil en douceur.</p>
-                    <p class="card-text"><strong>Tarif : 20€ / heure</strong></p>
+{% include 'texts/formules_intro.txt' %}
+    <div class="container py-4">
+        <h1 class="text-center mb-5">Quelle formule est faite pour vous ?</h1>  
+        <p class="text-center lead">  
+            Que vous soyez curieux de tester le wingfoil, motivé(e) par une session entre ami(e)s, ou un rideur intermédiaire sans matériel sous la main, Wing4All a une solution pour vous !  
+            Découvrez nos formules adaptées à chaque profil et profitez de l'expérience sans engagement.  
+        </p>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4" style="background-color: #f8f9fa;">
+                    <div class="card-body">
+                        <h5 class="card-title">Formule Débutant</h5>
+                        <p class="card-text">{% include 'texts/formule_debutant.txt' %}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Formule Groupe</h5>
-                    <p class="card-text">Profitez d'une session en groupe avec des tarifs avantageux pour partager l'expérience.</p>
-                    <p class="card-text"><strong>Tarif : 15€ / personne / heure</strong></p>
+            <div class="col-md-4">
+                <div class="card mb-4" style="background-color: #f8f9fa;">
+                    <div class="card-body">
+                        <h5 class="card-title">Formule Groupe</h5>
+                        <p class="card-text">{% include 'texts/formule_groupe.txt' %}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Formule Expérimentée</h5>
-                    <p class="card-text">Location à la demi-journée pour les pratiquants expérimentés souhaitant profiter pleinement.</p>
-                    <p class="card-text"><strong>Tarif : 50€ / demi-journée</strong></p>
+            <div class="col-md-4">
+                <div class="card mb-4" style="background-color: #f8f9fa;">
+                    <div class="card-body">
+                        <h5 class="card-title">Formule Intermédiaire</h5>
+                        <p class="card-text">{% include 'texts/formule_intermediaire.txt' %}</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %} 
