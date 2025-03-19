@@ -39,9 +39,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('equipment_list') }}">Locations</a>
                     </li>
-                    <li class="nav-item">
+                    <!--li class="nav-item">
                         <a class="nav-link" href="{{ url_for('equipe') }}">Équipe</a>
-                    </li>
+                    </li-->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
                     </li>
@@ -51,7 +51,7 @@
                     </li>
                     {% endif %}
                 </ul>
-                <ul class="navbar-nav ms-auto">
+                <!--ul class="navbar-nav ms-auto">
                     {% if current_user.is_authenticated %}
                     <li class="nav-item">
                         <span class="nav-link">Bonjour, {{ current_user.name }}</span>
@@ -67,7 +67,7 @@
                         <a class="nav-link" href="{{ url_for('register') }}">Inscription</a>
                     </li>
                     {% endif %}
-                </ul>
+                </ul-->
             </div>
         </div>
     </nav>

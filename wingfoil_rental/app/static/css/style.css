@@ -242,3 +242,7 @@ footer {
     padding: 0 3rem; /* Increase padding for better spacing */
 }
 
+strong {
+    font-weight: bold;
+}
+
