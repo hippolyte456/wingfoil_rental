@@ -2,26 +2,50 @@
 
 {% block title %}Contact{% endblock %}
 
+{% block meta_description %}Contactez-moi pour louer votre matériel de wingfoil. Moniteur FFV diplômé, je vous accompagne dans votre progression avec une approche pédagogique évoluée.{% endblock %}
+
 {% block content %}
-<div class="container py-4">
-    <div class="row justify-content-center align-items-center">
-        <div class="col-md-4 text-center">
-            <img src="{{ url_for('static', filename='img/logo/wing_dallE-removebg.png') }}" alt="Wing4All Logo" class="img-fluid mb-3">
+<div class="container py-5">
+    <div class="row justify-content-between align-items-start">
+        <!-- Colonne de gauche : Logo et coordonnées -->
+        <div class="col-md-4">
+            <div class="text-center mb-4">
+                <img src="{{ url_for('static', filename='img/logo/wing_dallE-removebg.png') }}" alt="Wing4All Logo" class="img-fluid mb-4" style="max-width: 200px;">
+                <div class="contact-info">
+                    <p class="mb-3">
+                        <i class="fas fa-phone me-2"></i>
+                        <a href="tel:+33652583862" class="text-decoration-none">+33 6 52 58 38 62</a>
+                    </p>
+                    <p class="mb-3">
+                        <i class="fas fa-envelope me-2"></i>
+                        <a href="mailto:contact@wing4all.fr" class="text-decoration-none">contact@wing4all.fr</a>
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="col-md-8">
-            <div class="card">
+
+        <!-- Colonne de droite : Présentation -->
+        <div class="col-md-7">
+            <div class="card border-0 bg-light">
                 <div class="card-body">
-                    <h5 class="mb-3">Nous contacter directement :</h5>
-                    <!--p><i class="fas fa-envelope me-2"></i>Email : <a href="mailto:contact@wing4all.com">contact@wing4all.com</a></p-->
-                    <p><i class="fas fa-phone me-2"></i>Téléphone : +33 6 52 58 38 62</p>
+                    <h1 class="h4 mb-4">Me Contacter</h1>
+                    <p class="mb-4">
+                        Moniteur de voile diplômé FFV, je suis passionné par la transmission et l'enseignement des sports de glisse. 
+                        Mon parcours académique dans la théorie de l'apprentissage m'a permis de développer une approche pédagogique unique, 
+                        optimisant la courbe d'apprentissage dès vos prmeiers bords.
+                    </p>
+                    <p class="mb-4">
+                        Cette double compétence me permet d'adapter mes conseils à chaque pratiquant, 
+                        débutant ou confirmé, pour une progression douce, mais efficace.
+                    </p>
+                    <p>
+                        Mon objectif est de vous proposer des locations au prix le plus bas possible, 
+                        pour que vous puissiez vous faire plaisir sans prise de tête. N'hésitez pas à me contacter 
+                        pour toute question sur le matériel ou les conditions de pratique.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-    <h1 class="text-center mb-5 text-primary">Contactez-nous</h1>
-    <h3 class="text-center mb-5 text-primary">
-        Pour toutes questions, n'hésitez pas à me contacter. Mon objectif est de proposer des locations au prix le plus bas possible, pour que vous puissiez vous faire plaisir sans prise de tête.
-    </h3>
-    
 </div>
 {% endblock %} 
