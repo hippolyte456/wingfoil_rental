@@ -5,7 +5,7 @@ from config import config
 
 db = SQLAlchemy()
 login_manager = LoginManager()
-login_manager.login_view = 'login'
+login_manager.login_view = 'auth.login'
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -21,8 +21,15 @@ def create_app(config_name='development'):
     
     from .models import user, equipment, reservation
     
-    # Import et enregistrement des routes
+    # Import et enregistrement des blueprints
+    from .routes.main import bp as main_bp
+    from .routes.auth import bp as auth_bp
+    from .routes.equipment import bp as equipment_bp
     from .routes.seo import bp as seo_bp
+    
+    app.register_blueprint(main_bp)
+    app.register_blueprint(auth_bp, url_prefix='/auth')
+    app.register_blueprint(equipment_bp, url_prefix='/equipment')
     app.register_blueprint(seo_bp)
     
     with app.app_context():

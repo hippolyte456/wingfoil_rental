@@ -31,7 +31,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main.home') }}">
                 <img src="{{ url_for('static', filename='img/logo/wing_dallE-removebg.png') }}" alt="Logo" width="100" height="100" class="d-inline-block align-text-top me-2">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -40,26 +40,23 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('home') }}">Accueil</a>
+                        <a class="nav-link" href="{{ url_for('main.home') }}">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('formules') }}">Formules</a>
+                        <a class="nav-link" href="{{ url_for('main.formules') }}">Formules</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('conseils') }}">Conseils</a>
+                        <a class="nav-link" href="{{ url_for('main.conseils') }}">Conseils</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('equipment_list') }}">Locations</a>
+                        <a class="nav-link" href="{{ url_for('equipment.equipment_list') }}">Locations</a>
                     </li>
-                    <!--li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('equipe') }}">Équipe</a>
-                    </li-->
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                        <a class="nav-link" href="{{ url_for('main.contact') }}">Contact</a>
                     </li>
                     {% if current_user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('my_reservations') }}">Mes Réservations</a>
+                        <a class="nav-link" href="{{ url_for('equipment.my_reservations') }}">Mes Réservations</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -69,14 +66,14 @@
                         <span class="nav-link">Bonjour, {{ current_user.name }}</span>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('logout') }}">Déconnexion</a>
+                        <a class="nav-link" href="{{ url_for('auth.logout') }}">Déconnexion</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('login') }}">Connexion</a>
+                        <a class="nav-link" href="{{ url_for('auth.login') }}">Connexion</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('register') }}">Inscription</a>
+                        <a class="nav-link" href="{{ url_for('auth.register') }}">Inscription</a>
                     </li>
                     {% endif %}
                 </ul-->
@@ -102,15 +99,15 @@
                 <div class="col-md-4">
                     <h3>Wing4All</h3>
                     <img src="{{ url_for('static', filename='img/logo/wing_dallE-removebg.png') }}" alt="Logo Wing4All" width="30" height="30" class="mb-2">
-                    <p>Location de matériel de wingfoil</p>
+                    <p>Location de matériel de wingfoil de qualité</p>
                 </div>
                 <div class="col-md-4">
                     <h3>Navigation</h3>
                     <ul class="list-unstyled">
-                        <li><a href="{{ url_for('home') }}">Accueil</a></li>
-                        <li><a href="{{ url_for('formules') }}">Formules</a></li>
-                        <li><a href="{{ url_for('conseils') }}">Conseils</a></li>
-                        <li><a href="{{ url_for('equipment_list') }}">Locations</a></li>
+                        <li><a href="{{ url_for('main.home') }}">Accueil</a></li>
+                        <li><a href="{{ url_for('main.formules') }}">Formules</a></li>
+                        <li><a href="{{ url_for('main.conseils') }}">Conseils</a></li>
+                        <li><a href="{{ url_for('equipment.equipment_list') }}">Locations</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">

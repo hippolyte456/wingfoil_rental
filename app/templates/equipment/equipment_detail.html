@@ -38,7 +38,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Réserver cet équipement</h5>
-                    <form action="{{ url_for('make_reservation', equipment_id=equipment.id) }}" method="POST">
+                    <form action="{{ url_for('equipment.make_reservation', equipment_id=equipment.id) }}" method="POST">
                         <div class="mb-3">
                             <label for="start_date" class="form-label">Date de début</label>
                             <input type="date" class="form-control" id="start_date" name="start_date" required>
@@ -53,7 +53,7 @@
                         {% if current_user.is_authenticated %}
                         <button type="submit" class="btn btn-primary btn-lg w-100">Réserver maintenant</button>
                         {% else %}
-                        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg w-100">Connectez-vous pour réserver</a>
+                        <a href="{{ url_for('auth.login') }}" class="btn btn-primary btn-lg w-100">Connectez-vous pour réserver</a>
                         {% endif %}
                     </form>
                 </div>
