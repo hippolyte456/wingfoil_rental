@@ -109,22 +109,25 @@ def sitemap():
     pages = []
     # Liste des routes statiques avec leurs priorités
     routes = {
-        'home': {'changefreq': 'daily', 'priority': '1.0'},
-        'formules': {'changefreq': 'weekly', 'priority': '0.8'},
-        'conseils': {'changefreq': 'weekly', 'priority': '0.7'},
-        'equipment_list': {'changefreq': 'daily', 'priority': '0.9'},
-        'contact': {'changefreq': 'monthly', 'priority': '0.6'}
+        'main.home': {'changefreq': 'daily', 'priority': '1.0'},
+        'main.formules': {'changefreq': 'weekly', 'priority': '0.8'},
+        'main.conseils': {'changefreq': 'weekly', 'priority': '0.7'},
+        'equipment.equipment_list': {'changefreq': 'daily', 'priority': '0.9'},
+        'main.contact': {'changefreq': 'monthly', 'priority': '0.6'}
     }
     
     # Ajout des routes statiques
     for route, info in routes.items():
-        url = url_for(route, _external=True)
-        pages.append({
-            'loc': url,
-            'lastmod': datetime.now().strftime('%Y-%m-%d'),
-            'changefreq': info['changefreq'],
-            'priority': info['priority']
-        })
+        try:
+            url = url_for(route, _external=True)
+            pages.append({
+                'loc': url,
+                'lastmod': datetime.now().strftime('%Y-%m-%d'),
+                'changefreq': info['changefreq'],
+                'priority': info['priority']
+            })
+        except Exception as e:
+            continue  # Skip if route doesn't exist
 
     # Création du sitemap XML
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
