@@ -21,6 +21,10 @@ def create_app(config_name='development'):
     
     from .models import user, equipment, reservation
     
+    # Import et enregistrement des routes
+    from .routes.seo import bp as seo_bp
+    app.register_blueprint(seo_bp)
+    
     with app.app_context():
         db.create_all()
     

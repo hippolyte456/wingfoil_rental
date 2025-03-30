@@ -1,9 +1,9 @@
-from flask import make_response, url_for
-from app import app
+from flask import Blueprint, make_response, url_for
 from datetime import datetime
 
+bp = Blueprint('seo', __name__)
 
-@app.route('/sitemap.xml')
+@bp.route('/sitemap.xml')
 def sitemap():
     """Generate sitemap.xml dynamically"""
     pages = []
