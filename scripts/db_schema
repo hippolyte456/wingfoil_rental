@@ -1,0 +1,52 @@
+digraph {
+	graph [rankdir=LR]
+	Clients [label="📂 Clients
+- Nom, Email
+- Historique réservations
+- Paiements" fillcolor=lightblue shape=folder style=filled]
+	"Réservations" [label="📂 Réservations
+- ID Réservation
+- Client
+- Équipement
+- Date" fillcolor=lightgreen shape=folder style=filled]
+	"Équipements" [label="📂 Équipements
+- ID Matériel
+- Type (Wing, Board)
+- État" fillcolor=lightyellow shape=folder style=filled]
+	Paiements [label="📂 Paiements
+- ID Paiement
+- Client
+- Montant
+- Statut" fillcolor=lightcoral shape=folder style=filled]
+	Marketing [label="📂 Marketing
+- Emails envoyés
+- Statistiques
+- Leads" fillcolor=lightgray shape=folder style=filled]
+	"Formulaires Web" [label="🌐 Formulaires Web
+- Demande de réservation" fillcolor=white shape=note style=filled]
+	"Paiement en ligne" [label="💳 Paiement en ligne
+- Stripe, PayPal" fillcolor=white shape=note style=filled]
+	"Check-in" [label="🏝️ Check-in
+- Confirmation matériel" fillcolor=white shape=note style=filled]
+	"Email Marketing" [label="📧 Email Marketing
+- Campagnes" fillcolor=white shape=note style=filled]
+	"Tableau de bord" [label="📊 Tableau de bord
+- Statistiques ventes
+- Matériel disponible" fillcolor=white shape=note style=filled]
+	"Emails Clients" [label="📩 Emails Clients
+- Confirmation
+- Relances" fillcolor=white shape=note style=filled]
+	Clients -> "Réservations" [label="Fait une réservation"]
+	"Réservations" -> "Équipements" [label="Assigne matériel"]
+	"Réservations" -> Paiements [label="Génère facture"]
+	Clients -> Paiements [label="Effectue un paiement"]
+	Clients -> Marketing [label="Ciblage publicitaire"]
+	Marketing -> "Emails Clients" [label="Envoi promo"]
+	"Formulaires Web" -> "Réservations" [label="Création"]
+	"Paiement en ligne" -> Paiements [label=Validation]
+	"Check-in" -> "Équipements" [label="Vérification état"]
+	"Email Marketing" -> Marketing [label="Campagne ciblée"]
+	Paiements -> "Tableau de bord" [label="Suivi financier"]
+	"Réservations" -> "Tableau de bord" [label=Statistiques]
+	"Emails Clients" -> Clients [label=Notification]
+}
