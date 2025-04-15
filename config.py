@@ -4,6 +4,9 @@ from dotenv import load_dotenv
 basedir = os.path.abspath(os.path.dirname(__file__))
 load_dotenv(os.path.join(basedir, '.env'))
 
+# Path to the logo used across the application
+LOGO_PATH = 'img/logo/logo_wingfoil-rm-bg.png'
+
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-key-to-change-in-production'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -30,4 +33,4 @@ config = {
     'testing': TestingConfig,
     'production': ProductionConfig,
     'default': DevelopmentConfig
-} 
+}

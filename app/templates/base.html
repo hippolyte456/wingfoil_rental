@@ -8,14 +8,14 @@
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Wing4All - {% block og_title %}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}Location de matériel de wingfoil en France{% endblock %}">
-    <meta property="og:image" content="{{ url_for('static', filename='img/logo/wing_dallE-removebg.png', _external=True) }}">
+    <meta property="og:image" content="{{ url_for('static', filename=LOGO_PATH, _external=True) }}">
     <meta property="og:url" content="{{ request.url }}">
     <link rel="canonical" href="{{ request.url }}" />
     <title>Wing4All - {% block title %}{% endblock %} | Location de Wingfoil</title>
     <!-- Preload des ressources critiques -->
-    <link rel="preload" href="{{ url_for('static', filename='img/logo/wing_dallE-removebg.png') }}" as="image" type="image/png">
+    <link rel="preload" href="{{ url_for('static', filename=LOGO_PATH) }}" as="image" type="image/png">
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo/wing_dallE-removebg.png') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename=LOGO_PATH) }}">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preload" href="{{ url_for('static', filename='css/style.css') }}?v=1" as="style">
@@ -32,7 +32,7 @@
     <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main.home') }}">
-                <img src="{{ url_for('static', filename='img/logo/wing_dallE-removebg.png') }}" alt="Logo" width="100" height="100" class="d-inline-block align-text-top me-2">
+                <img src="{{ url_for('static', filename=LOGO_PATH) }}" alt="Logo" width="100" height="100" class="d-inline-block align-text-top me-2">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -98,7 +98,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <h3>Wing4All</h3>
-                    <img src="{{ url_for('static', filename='img/logo/wing_dallE-removebg.png') }}" alt="Logo Wing4All" width="30" height="30" class="mb-2">
+                    <img src="{{ url_for('static', filename=LOGO_PATH) }}" alt="Logo Wing4All" width="30" height="30" class="mb-2">
                     <p>Location de matériel de wingfoil de qualité</p>
                 </div>
                 <div class="col-md-4">
@@ -144,7 +144,7 @@
         "name": "Wing4All",
         "description": "Location de matériel de wingfoil en France",
         "url": "{{ request.url_root }}",
-        "image": "{{ url_for('static', filename='img/logo/wing_dallE-removebg.png', _external=True) }}",
+        "image": "{{ url_for('static', filename=LOGO_PATH, _external=True) }}",
         "address": {
             "@type": "PostalAddress",
             "addressCountry": "FR"
@@ -156,4 +156,4 @@
     }
     </script>
 </body>
-</html> 
+</html>
