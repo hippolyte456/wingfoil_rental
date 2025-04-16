@@ -40,4 +40,12 @@ def formules():
         title="Formules Location Wingfoil",
         description="Découvrez nos formules de location de matériel wingfoil à Saint-Malo. Prix attractifs et matériel de qualité pour tous les niveaux."
     )
-    return render_template('formules.html', meta_tags=meta_tags) 
+    return render_template('formules.html', meta_tags=meta_tags)
+
+@bp.route('/cgv')
+def cgv():
+    meta_tags = generate_meta_tags(
+        title="Conditions Générales de Vente",
+        description="Consultez les conditions générales de vente pour la location de matériel de wingfoil chez Wing4All."
+    )
+    return render_template('cgv.html', meta_tags=meta_tags)
