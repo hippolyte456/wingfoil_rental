@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+
+{% block title %}Guide du Débutant en Wingfoil{% endblock %}
+
+{% block meta_description %}Guide étape par étape pour débuter en wingfoil : de la théorie du vent aux manœuvres de base. Conseils pratiques, vidéos et points essentiels pour une progression rapide.{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="content-box p-4">
+        <h1 class="text-center mb-5">Guide du Débutant en Wingfoil</h1>
+        
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>Attention : Guide en cours de construction</strong> - Ce guide est actuellement en développement et sera complété progressivement. Merci de votre compréhension.
+                </div>
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>Comment utiliser ce guide :</strong> Suivez les étapes dans l'ordre pour une progression structurée. Pour chaque étape, vous trouverez une vidéo explicative et les points essentiels à retenir.
+                </div>
+            </div>
+        </div>
+
+        <div class="table-of-contents mb-5">
+            <h2 class="mb-3">Sommaire</h2>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="#securite-theorie" class="text-decoration-none">1. Sécurité et Théorie du Vent</a></li>
+                <li class="list-group-item"><a href="#maniement-aile" class="text-decoration-none">2. Maniement de l'Aile sur la Plage</a></li>
+                <li class="list-group-item"><a href="#premier-bord" class="text-decoration-none">3. Premier Bord en Wingfoil</a></li>
+                <li class="list-group-item"><a href="#empennage" class="text-decoration-none">4. Apprentissage de l'Empennage</a></li>
+                <li class="list-group-item"><a href="#premier-vol" class="text-decoration-none">5. Premier Vol en Foil</a></li>
+                <li class="list-group-item"><a href="#jibe" class="text-decoration-none">6. Le Jibe (Virement de Bord)</a></li>
+            </ul>
+        </div>
+
+        <!-- Section 1: Sécurité et Théorie du Vent -->
+        <div id="securite-theorie" class="learning-section mb-5">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="h4 mb-0"><i class="fas fa-shield-alt me-2"></i>1. Sécurité et Théorie du Vent</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <h3 class="h5 mb-3">La Meilleure Vidéo</h3>
+                            <div class="ratio ratio-16x9 mb-3">
+                                <iframe src="https://www.youtube.com/embed/OFVIwIqMCKY" title="Comprendre le vent pour le wingfoil" allowfullscreen></iframe>
+                            </div>
+                            <p class="text-muted small">Wingfoil Mag FR - Comprendre le vent et la sécurité</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="h5 mb-3">À Retenir</h3>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Toujours vérifier les prévisions de vent avant de sortir</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Éviter les vents "offshore" (qui poussent vers le large)</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Comprendre le principe des "fenêtres de vent" pour manier l'aile</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Équipement de sécurité obligatoire : gilet, leash, casque recommandé</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Choisir un spot adapté aux débutants (peu profond, sans obstacles)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Maniement de l'Aile sur la Plage -->
+        <div id="maniement-aile" class="learning-section mb-5">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="h4 mb-0"><i class="fas fa-hand-paper me-2"></i>2. Maniement de l'Aile sur la Plage</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <h3 class="h5 mb-3">La Meilleure Vidéo</h3>
+                            <div class="ratio ratio-16x9 mb-3">
+                                <iframe src="https://www.youtube.com/embed/qT40FrVH9xw" title="Apprendre à manier l'aile de wing" allowfullscreen></iframe>
+                            </div>
+                            <p class="text-muted small">Wing Surf World - Premiers pas avec l'aile</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="h5 mb-3">À Retenir</h3>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>S'entraîner sur le sable sec avant de se mettre à l'eau</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Bien gonfler l'aile (suivre les indications du fabricant)</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Position des mains : main avant guide, main arrière contrôle la puissance</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Apprendre à neutraliser l'aile (position au zénith)</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Pratiquer les mouvements de "sheeting" (border/choquer)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Premier Bord en Wingfoil -->
+        <div id="premier-bord" class="learning-section mb-5">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="h4 mb-0"><i class="fas fa-water me-2"></i>3. Premier Bord en Wingfoil</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <h3 class="h5 mb-3">La Meilleure Vidéo</h3>
+                            <div class="ratio ratio-16x9 mb-3">
+                                <iframe src="https://www.youtube.com/embed/ZS0-Mw8OOE0" title="Premier bord en wingfoil" allowfullscreen></iframe>
+                            </div>
+                            <p class="text-muted small">Wingfoil Mag FR - Premier bord et position du corps</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="h5 mb-3">À Retenir</h3>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Commencer avec une planche volumineuse pour plus de stabilité</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Position du corps : pieds écartés, genoux fléchis, poids sur jambe avant</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Regarder dans la direction où vous allez, pas l'aile</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Avancer progressivement vers l'avant de la planche pour déjauger</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Pratiquer d'abord au "waterstart" (départ dans l'eau) avant d'essayer le foil</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Apprentissage de l'Empennage -->
+        <div id="empennage" class="learning-section mb-5">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="h4 mb-0"><i class="fas fa-balance-scale me-2"></i>4. Apprentissage de l'Empennage</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <h3 class="h5 mb-3">La Meilleure Vidéo</h3>
+                            <div class="ratio ratio-16x9 mb-3">
+                                <iframe src="https://www.youtube.com/embed/YWX_J_McHZc" title="Contrôle de l'empennage en wingfoil" allowfullscreen></iframe>
+                            </div>
+                            <p class="text-muted small">Wing Surf World - Maîtriser l'équilibre avec le foil</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="h5 mb-3">À Retenir</h3>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>L'empennage est la petite aile arrière du foil qui aide à la stabilité</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Pratiquer d'abord avec un foil à grand mât pour plus de stabilité</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Sentir le contact entre le foil et l'eau avant de tenter de décoller</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Transférer progressivement le poids vers l'avant pour amorcer le décollage</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Garder les jambes fléchies pour absorber les mouvements du foil</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Premier Vol en Foil -->
+        <div id="premier-vol" class="learning-section mb-5">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="h4 mb-0"><i class="fas fa-plane me-2"></i>5. Premier Vol en Foil</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <h3 class="h5 mb-3">La Meilleure Vidéo</h3>
+                            <div class="ratio ratio-16x9 mb-3">
+                                <iframe src="https://www.youtube.com/embed/R-Y-Nwf7qi0" title="Premier vol en wingfoil" allowfullscreen></iframe>
+                            </div>
+                            <p class="text-muted small">Wingfoil Mag FR - Comment réussir son premier vol</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="h5 mb-3">À Retenir</h3>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Choisir un jour avec vent modéré et eau plate pour premier vol</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Position du corps : poids sur jambe avant, buste droit, regard loin devant</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Ne pas chercher à voler haut dès le début (5-10 cm suffisent)</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Contrôler la hauteur avec la jambe arrière (appuyer légèrement pour descendre)</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Maintenir une vitesse constante pour stabiliser le vol</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: Le Jibe (Virement de Bord) -->
+        <div id="jibe" class="learning-section mb-5">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="h4 mb-0"><i class="fas fa-sync-alt me-2"></i>6. Le Jibe (Virement de Bord)</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <h3 class="h5 mb-3">La Meilleure Vidéo</h3>
+                            <div class="ratio ratio-16x9 mb-3">
+                                <iframe src="https://www.youtube.com/embed/gOtJqtFMHDk" title="Apprendre le jibe en wingfoil" allowfullscreen></iframe>
+                            </div>
+                            <p class="text-muted small">Wing Surf World - Technique du jibe pour débutants</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="h5 mb-3">À Retenir</h3>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Apprendre d'abord le jibe "touch & go" (en touchant l'eau)</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Prendre de la vitesse avant d'entamer le virage</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Neutraliser l'aile avant de l'amener de l'autre côté</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Garder le poids sur la jambe avant pendant le virage</li>
+                                <li class="list-group-item bg-light"><i class="fas fa-check text-success me-2"></i>Changer de main sur l'aile seulement une fois le virage bien amorcé</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="conclusion mt-5 mb-4">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h2 class="h4 mb-3 text-center">Et après ?</h2>
+                    <p>Une fois que vous maîtrisez ces 6 étapes fondamentales, vous avez les bases solides pour profiter pleinement du wingfoil. La suite de votre progression consistera à affiner votre technique et à apprendre des manœuvres plus avancées.</p>
+                    <p>N'oubliez pas que la pratique régulière est la clé du succès. Chaque session vous permettra d'améliorer votre équilibre, votre lecture du vent et votre contrôle du foil.</p>
+                    <div class="text-center mt-4">
+                        <a href="{{ url_for('main.contact') }}" class="btn btn-primary">
+                            <i class="fas fa-comment-dots me-2"></i>Me contacter pour des conseils personnalisés
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.learning-section .card {
+    transition: all 0.3s ease;
+}
+.learning-section .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+.table-of-contents .list-group-item {
+    transition: all 0.2s ease;
+}
+.table-of-contents .list-group-item:hover {
+    background-color: #f8f9fa;
+    padding-left: 1.5rem;
+}
+</style>
+{% endblock %}

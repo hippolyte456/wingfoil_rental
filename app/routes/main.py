@@ -49,3 +49,19 @@ def cgv():
         description="Consultez les conditions générales de vente pour la location de matériel de wingfoil chez Wing4All."
     )
     return render_template('cgv.html', meta_tags=meta_tags)
+
+@bp.route('/guide-debutant')
+def beginner_guide():
+    meta_tags = generate_meta_tags(
+        title="Guide du Débutant en Wingfoil",
+        description="Guide étape par étape pour apprendre le wingfoil : sécurité, théorie du vent, maniement de l'aile, premiers bords, empennage, vol et jibe."
+    )
+    return render_template('beginner_guide.html', meta_tags=meta_tags)
+
+@bp.route('/actualites')
+def actualites():
+    meta_tags = generate_meta_tags(
+        title="Actualités Wing4All",
+        description="Suivez toutes les actualités de Wing4All : événements, nouveautés, promotions et informations sur la location de matériel de wingfoil."
+    )
+    return render_template('actualites.html', meta_tags=meta_tags)
