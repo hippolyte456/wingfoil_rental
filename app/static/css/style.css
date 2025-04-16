@@ -124,6 +124,27 @@ footer {
         padding: 0 1rem;
     }
     
+    /* Réduire le padding horizontal pour les éléments principaux */
+    .container, 
+    section, 
+    header, 
+    footer,
+    .content-box,
+    .card-body {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
+    .card {
+        padding: 15px;
+    }
+    
+    /* Supprime le padding excessif des éléments avec des classes Bootstrap */
+    .p-4, .px-4, .ps-4, .pe-4 {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
     h1, h2 {
         font-size: 1.5rem;
     }
@@ -198,6 +219,27 @@ footer {
     
     body {
         font-size: 0.8rem;
+    }
+    
+    /* Réduire davantage le padding horizontal pour les très petits écrans */
+    .container, 
+    section, 
+    header, 
+    footer,
+    .content-box,
+    .card-body {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    
+    .card {
+        padding: 10px;
+    }
+    
+    /* Supprime le padding excessif des éléments avec des classes Bootstrap */
+    .p-4, .px-4, .ps-4, .pe-4 {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
     }
     
     p, a, li, .card-text, .lead {
