@@ -101,7 +101,7 @@ footer {
         max-height: 150px; /* Reduce image height for smaller screens */
     }
     body {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
     h1, h2, h3, h4, h5, h6 {
         font-size: 1.2rem;
@@ -144,6 +144,39 @@ footer {
     .me-2 {
         margin-right: 0.5rem !important;
     }
+    
+    /* Réduire davantage la taille des textes sur mobile */
+    p, a, li, .card-text, .lead {
+        font-size: 0.85rem;
+    }
+    
+    h1 {
+        font-size: 1.4rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+    }
+    
+    h4, h5, h6 {
+        font-size: 1.1rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+    
+    .nav-link {
+        font-size: 0.85rem;
+    }
+    
+    .btn {
+        font-size: 0.85rem;
+    }
 }
 
 /* Improve form elements on mobile */
@@ -155,6 +188,42 @@ footer {
     
     input, select, textarea {
         font-size: 16px !important; /* Prevents iOS zoom on focus */
+    }
+    
+    body {
+        font-size: 0.8rem;
+    }
+    
+    p, a, li, .card-text, .lead {
+        font-size: 0.8rem;
+    }
+    
+    h1 {
+        font-size: 1.3rem;
+    }
+    
+    h2 {
+        font-size: 1.2rem;
+    }
+    
+    h3, h4, h5, h6 {
+        font-size: 1.1rem;
+    }
+    
+    .btn {
+        font-size: 0.8rem;
+    }
+    
+    .price-tag {
+        font-size: 1rem;
+    }
+    
+    footer h3 {
+        font-size: 1.1rem;
+    }
+    
+    .link-title {
+        font-size: 1.1rem;
     }
 }
 
