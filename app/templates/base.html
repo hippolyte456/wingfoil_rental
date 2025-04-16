@@ -21,6 +21,7 @@
     <link rel="preload" href="{{ url_for('static', filename='css/style.css') }}?v=1" as="style">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1">
     <style>
+        /* Moved inline styles to CSS */
         body {
             background-image: url('{% block background_image %}{{ url_for("static", filename="img/base/intro.png") }}{% endblock %}');
             background-size: cover;

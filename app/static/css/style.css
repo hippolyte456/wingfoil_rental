@@ -12,6 +12,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
     background-color: #f4f4f4;
+    font-size: 1rem; /* Use relative font size */
 }
 
 /* Navigation */
@@ -61,7 +62,8 @@ body {
 }
 
 .card-img-top {
-    height: 200px;
+    height: auto; /* Allow images to scale dynamically */
+    max-height: 200px; /* Set a maximum height for consistency */
     object-fit: cover;
 }
 
@@ -96,7 +98,7 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
     .card-img-top {
-        height: 150px;
+        max-height: 150px; /* Reduce image height for smaller screens */
     }
     body {
         font-size: 0.9rem;
@@ -106,6 +108,69 @@ footer {
     }
     p, a, li {
         font-size: 0.9rem;
+    }
+    .hero-section {
+        padding: 5vw 0; /* Reduce padding for smaller screens */
+    }
+    .homepage-container {
+        padding: 0 2rem; /* Adjust padding for smaller screens */
+    }
+    .link-title {
+        font-size: 1.2rem;
+        padding: 10px 5px;
+    }
+    
+    .container {
+        padding: 0 1rem;
+    }
+    
+    h1, h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3, h4, h5 {
+        font-size: 1.2rem;
+    }
+    
+    .py-4, .py-5 {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+    
+    .mb-4, .mb-5 {
+        margin-bottom: 1rem !important;
+    }
+    
+    .me-2 {
+        margin-right: 0.5rem !important;
+    }
+}
+
+/* Improve form elements on mobile */
+@media (max-width: 576px) {
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    input, select, textarea {
+        font-size: 16px !important; /* Prevents iOS zoom on focus */
+    }
+}
+
+/* Fix for navigation on small screens */
+@media (max-width: 992px) {
+    .navbar-brand img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .navbar {
+        padding: 0.5rem;
+    }
+    
+    .nav-link {
+        padding: 0.5rem 0.75rem;
     }
 }
 
@@ -153,7 +218,7 @@ footer {
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
-    padding: 150px 0;
+    padding: 10vw 0; /* Use relative units for padding */
     margin-bottom: 2rem;
 }
 
@@ -176,6 +241,7 @@ footer {
 .resource-card {
     transition: transform 0.2s;
     background-color: #f8f9fa;
+    height: 100%; /* Make cards equal height */
 }
 .resource-card:hover {
     transform: translateY(-5px);
@@ -248,7 +314,7 @@ footer {
 }
 
 .homepage-container {
-    padding: 0 3rem; /* Increase padding for better spacing */
+    padding: 0 5%; /* Use percentage for better scaling */
 }
 
 strong {

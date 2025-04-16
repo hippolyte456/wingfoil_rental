@@ -20,19 +20,20 @@
             </p>
             
             <div class="row mb-5 justify-content-center">
-                <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-3">
+                <!-- Using col-sm-12 for mobile, col-md-6 for medium, col-lg-4 for large screens -->
+                <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-4">
                     <a href="{{ url_for('main.conseils') }}" class="link-title text-decoration-none d-block h3 py-3">
                         Besoin de conseils ?
                     </a>
                 </div>
 
-                <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-3">
+                <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-4">
                     <a href="{{ url_for('equipment.equipment_list') }}" class="link-title text-decoration-none d-block h3 py-3">
                         Voir les équipements
                     </a>
                 </div>
 
-                <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-3">
+                <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-4">
                     <a href="{{ url_for('main.contact') }}" class="link-title text-decoration-none d-block h3 py-3">
                         Contactez-nous pour réserver
                     </a>

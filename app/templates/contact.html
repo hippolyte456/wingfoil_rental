@@ -6,27 +6,26 @@
 
 {% block content %}
 <div class="container py-5">
-    <div class="row justify-content-between align-items-start">
+    <div class="row justify-content-between align-items-start gy-4">
         <!-- Colonne de gauche : Logo et coordonnées -->
-        <div class="col-md-4">
-            <div class="text-center mb-4">
+        <div class="col-lg-4 col-md-5 col-sm-12 mb-4 mb-md-0">
+            <div class="text-center text-md-start">
                 <img src="{{ url_for('static', filename=LOGO_PATH) }}" alt="Wing4All Logo" class="img-fluid mb-4" style="max-width: 200px;">
                 <div class="contact-info">
-                    <p class="mb-3" style="font-size: 1.5rem;">
-                        <i class="fas fa-phone me-2" style="font-size: 1.5rem;"></i>
-                        <a href="tel:+33652583862" class="text-decoration-none" style="font-size: 1.5rem;">+33 6 52 58 38 62</a>
+                    <p class="mb-3">
+                        <i class="fas fa-phone me-2"></i>
+                        <a href="tel:+33652583862" class="text-decoration-none">+33 6 52 58 38 62</a>
                     </p>
-                    <p class="mb-3" style="font-size: 1.5rem;">
-                        <i class="fas fa-envelope me-2" style="font-size: 1.5rem;"></i>
-                        <a href="mailto:{{ CONTACT_EMAIL }}" class="text-decoration-none" style="font-size: 1.5rem;">{{ CONTACT_EMAIL }}</a>
+                    <p class="mb-3">
+                        <i class="fas fa-envelope me-2"></i>
+                        <a href="mailto:{{ CONTACT_EMAIL }}" class="text-decoration-none">{{ CONTACT_EMAIL }}</a>
                     </p>
-                    
                 </div>
             </div>
         </div>
 
         <!-- Colonne de droite : Présentation -->
-        <div class="col-md-7">
+        <div class="col-lg-7 col-md-7 col-sm-12">
             <div class="card border-0 bg-light">
                 <div class="card-body">
                     <h1 class="h4 mb-4">Me Contacter</h1>
