@@ -3,15 +3,16 @@
 {% block title %} Formules{% endblock %}
 
 {% block content %}
-
     <div class="container py-4">
         <h1 class="text-center mb-5">Quelle formule est faite pour vous ?</h1>  
         <p class="text-center lead">
             <strong>{% include 'texts/formules_intro.txt' %}</strong>
         </p>
+        
+        <!-- Version desktop: 2 lignes de 2 formules -->
         <div class="row">
-            <!-- Added gx-4 for horizontal spacing and gy-4 for vertical spacing -->
-            <div class="col-md-6 col-lg-3 mb-4">
+            <!-- Première ligne -->
+            <div class="col-md-6 col-lg-6 mb-4">
                 <div class="card h-100" style="background-color: #f8f9fa;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Formule Débutant</h5>
@@ -23,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3 mb-4">
+            <div class="col-md-6 col-lg-6 mb-4">
                 <div class="card h-100" style="background-color: #f8f9fa;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Formule Groupe</h5>
@@ -35,7 +36,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3 mb-4">
+            
+            <!-- Deuxième ligne -->
+            <div class="col-md-6 col-lg-6 mb-4">
                 <div class="card h-100" style="background-color: #f8f9fa;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Formule Intermédiaire</h5>
@@ -47,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3 mb-4">
+            <div class="col-md-6 col-lg-6 mb-4">
                 <div class="card h-100" style="background-color: #f8f9fa;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Formule Stage</h5>
