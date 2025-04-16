@@ -873,6 +873,16 @@ textarea.form-control {
     .timeline-item:nth-child(even) .timeline-dot {
         left: 21px;
     }
+
+    body {
+        font-size: 0.9rem;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-size: 1.2rem;
+    }
+    p, a, li {
+        font-size: 0.9rem;
+    }
 }
 
 /* Map Section */
