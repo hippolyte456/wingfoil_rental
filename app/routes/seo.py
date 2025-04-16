@@ -110,10 +110,13 @@ def sitemap():
     # Liste des routes statiques avec leurs priorités
     routes = {
         'main.home': {'changefreq': 'daily', 'priority': '1.0'},
+        'main.actualites': {'changefreq': 'weekly', 'priority': '0.8'},
         'main.formules': {'changefreq': 'weekly', 'priority': '0.8'},
         'main.conseils': {'changefreq': 'weekly', 'priority': '0.7'},
+        'main.beginner_guide': {'changefreq': 'monthly', 'priority': '0.7'},
         'equipment.equipment_list': {'changefreq': 'daily', 'priority': '0.9'},
-        'main.contact': {'changefreq': 'monthly', 'priority': '0.6'}
+        'main.contact': {'changefreq': 'monthly', 'priority': '0.6'},
+        'main.cgv': {'changefreq': 'yearly', 'priority': '0.4'}
     }
     
     # Ajout des routes statiques
@@ -145,4 +148,4 @@ def sitemap():
     
     response = make_response(xml)
     response.headers['Content-Type'] = 'application/xml'
-    return response 
+    return response
