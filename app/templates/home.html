@@ -14,32 +14,33 @@
 <div class="container-fluid content-text homepage-container">
     <div class="row justify-content-center">
         <div class="col-12 text-center">
-            <h2 class="mb-4"><strong>Bienvenue sur Wing4All</strong></h2>
-            <p class="lead mb-4">
-                <strong>{% include 'texts/home_intro.txt' %}</strong>
-            </p>
-            
-            <div class="row mb-5 justify-content-center">
-                <!-- Using col-sm-12 for mobile, col-md-6 for medium, col-lg-4 for large screens -->
-                <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-4">
-                    <a href="{{ url_for('main.conseils') }}" class="link-title text-decoration-none d-block h3 py-3">
-                        Besoin de conseils ?
-                    </a>
-                </div>
+            <div class="content-box p-4 rounded">
+                <h2 class="mb-4"><strong>Bienvenue sur Wing4All</strong></h2>
+                <p class="lead mb-4">
+                    <strong>{% include 'texts/home_intro.txt' %}</strong>
+                </p>
+                
+                <div class="row mb-5 justify-content-center">
+                    <!-- Using col-sm-12 for mobile, col-md-6 for medium, col-lg-4 for large screens -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-4">
+                        <a href="{{ url_for('main.conseils') }}" class="link-title text-decoration-none d-block h3 py-3 content-link">
+                            Des conseils pour débuter 
+                        </a>
+                    </div>
 
-                <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-4">
-                    <a href="{{ url_for('equipment.equipment_list') }}" class="link-title text-decoration-none d-block h3 py-3">
-                        Voir les équipements
-                    </a>
-                </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-4">
+                        <a href="{{ url_for('equipment.equipment_list') }}" class="link-title text-decoration-none d-block h3 py-3 content-link">
+                            Equipements en location
+                        </a>
+                    </div>
 
-                <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-4">
-                    <a href="{{ url_for('main.contact') }}" class="link-title text-decoration-none d-block h3 py-3">
-                        Contactez-nous pour réserver
-                    </a>
+                    <div class="col-lg-4 col-md-6 col-sm-12 text-center mb-4">
+                        <a href="{{ url_for('main.contact') }}" class="link-title text-decoration-none d-block h3 py-3 content-link">
+                            Reservation
+                        </a>
+                    </div>
                 </div>
             </div>
-            
         </div>
     </div>
 </div>

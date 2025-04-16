@@ -4,60 +4,62 @@
 
 {% block content %}
     <div class="container py-4">
-        <h1 class="text-center mb-5">Quelle formule est faite pour vous ?</h1>  
-        <p class="text-center lead">
-            <strong>{% include 'texts/formules_intro.txt' %}</strong>
-        </p>
-        
-        <!-- Version desktop: 2 lignes de 2 formules -->
-        <div class="row">
-            <!-- Première ligne -->
-            <div class="col-md-6 col-lg-6 mb-4">
-                <div class="card h-100" style="background-color: #f8f9fa;">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Formule Débutant</h5>
-                        <p class="card-text"><strong>{% include 'texts/formule_debutant.txt' %}</strong></p>
-                        <div class="mt-auto">
-                            <p class="price-tag mb-3">À partir de 89€</p>
-                            <a href="{{ url_for('main.contact') }}" class="btn btn-primary w-100">Réserver cette formule</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 mb-4">
-                <div class="card h-100" style="background-color: #f8f9fa;">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Formule Groupe</h5>
-                        <p class="card-text"><strong>{% include 'texts/formule_groupe.txt' %}</strong></p>
-                        <div class="mt-auto">
-                            <p class="price-tag mb-3">À partir de 75€/pers.</p>
-                            <a href="{{ url_for('main.contact') }}" class="btn btn-primary w-100">Réserver cette formule</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="content-box p-4">
+            <h1 class="text-center mb-5">Quelle formule est faite pour vous ?</h1>  
+            <p class="text-center lead">
+                <strong>{% include 'texts/formules_intro.txt' %}</strong>
+            </p>
             
-            <!-- Deuxième ligne -->
-            <div class="col-md-6 col-lg-6 mb-4">
-                <div class="card h-100" style="background-color: #f8f9fa;">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Formule Intermédiaire</h5>
-                        <p class="card-text"><strong>{% include 'texts/formule_intermediaire.txt' %}</strong></p>
-                        <div class="mt-auto">
-                            <p class="price-tag mb-3">À partir de 129€</p>
-                            <a href="{{ url_for('main.contact') }}" class="btn btn-primary w-100">Réserver cette formule</a>
+            <!-- Version desktop: 2 lignes de 2 formules -->
+            <div class="row">
+                <!-- Première ligne -->
+                <div class="col-md-6 col-lg-6 mb-4">
+                    <div class="card h-100" style="background-color: rgba(248, 249, 250, 0.6);">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Formule Débutant</h5>
+                            <p class="card-text"><strong>{% include 'texts/formule_debutant.txt' %}</strong></p>
+                            <div class="mt-auto">
+                                <p class="price-tag mb-3">À partir de 89€</p>
+                                <a href="{{ url_for('main.contact') }}" class="btn btn-primary w-100">Réserver cette formule</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-6 mb-4">
-                <div class="card h-100" style="background-color: #f8f9fa;">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Formule Stage</h5>
-                        <p class="card-text"><strong>Perfectionnez votre niveau avec notre formule stage de 3 jours. Accompagnement personnalisé, progression rapide et matériel adapté inclus. Idéal pour ceux qui veulent franchir un cap!</strong></p>
-                        <div class="mt-auto">
-                            <p class="price-tag mb-3">À partir de 299€</p>
-                            <a href="{{ url_for('main.contact') }}" class="btn btn-primary w-100">Réserver cette formule</a>
+                <div class="col-md-6 col-lg-6 mb-4">
+                    <div class="card h-100" style="background-color: rgba(248, 249, 250, 0.6);">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Formule Groupe</h5>
+                            <p class="card-text"><strong>{% include 'texts/formule_groupe.txt' %}</strong></p>
+                            <div class="mt-auto">
+                                <p class="price-tag mb-3">À partir de 75€/pers.</p>
+                                <a href="{{ url_for('main.contact') }}" class="btn btn-primary w-100">Réserver cette formule</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Deuxième ligne -->
+                <div class="col-md-6 col-lg-6 mb-4">
+                    <div class="card h-100" style="background-color: rgba(248, 249, 250, 0.6);">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Formule Intermédiaire</h5>
+                            <p class="card-text"><strong>{% include 'texts/formule_intermediaire.txt' %}</strong></p>
+                            <div class="mt-auto">
+                                <p class="price-tag mb-3">À partir de 129€</p>
+                                <a href="{{ url_for('main.contact') }}" class="btn btn-primary w-100">Réserver cette formule</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 mb-4">
+                    <div class="card h-100" style="background-color: rgba(248, 249, 250, 0.6);">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Formule Stage</h5>
+                            <p class="card-text"><strong>Perfectionnez votre niveau avec notre formule stage de 3 jours. Accompagnement personnalisé, progression rapide et matériel adapté inclus. Idéal pour ceux qui veulent franchir un cap!</strong></p>
+                            <div class="mt-auto">
+                                <p class="price-tag mb-3">À partir de 299€</p>
+                                <a href="{{ url_for('main.contact') }}" class="btn btn-primary w-100">Réserver cette formule</a>
+                            </div>
                         </div>
                     </div>
                 </div>
