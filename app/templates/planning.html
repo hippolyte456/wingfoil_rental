@@ -1,0 +1,489 @@
+{% extends "base.html" %}
+
+{% block title %}Planning et Disponibilités{% endblock %}
+
+{% block meta_description %}Consultez le planning des disponibilités de location de matériel wingfoil à Saint-Malo. <br>
+ Connectez-vous pour pré-réserver votre créneau.  <br>
+ Attendez la validation de votre créneau, appelez moi en cas de doute.{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="content-box p-4">
+        <h1 class="text-center mb-4">Planning et Disponibilités</h1>
+        
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>Comment ça marche :</strong> 
+                    Consultez le planning des disponibilités de location de matériel. <br>
+                    Connectez-vous pour pré-réserver votre créneau : les plages horaires en vert sont disponibles pour réservation.  <br>
+                    Attendez la validation de votre créneau, ou appelez-moi en cas de doute.
+                </div>
+            </div>
+        </div>
+        
+        {% if current_user.is_admin %}
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Gestion du Planning</h4>
+                        <p>En tant qu'administrateur, vous pouvez :</p>
+                        <div class="d-flex gap-2">
+                            <button id="create-slot-btn" class="btn btn-success">
+                                <i class="fas fa-plus-circle me-2"></i>Créer un créneau disponible
+                            </button>
+                            <button id="create-block-btn" class="btn btn-warning">
+                                <i class="fas fa-ban me-2"></i>Bloquer une plage horaire
+                            </button>
+                            <button id="delete-event-btn" class="btn btn-danger">
+                                <i class="fas fa-trash me-2"></i>Supprimer un événement
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Calendrier -->
+        <div class="row">
+            <div class="col-12">
+                <div class="calendar-container card">
+                    <div class="card-body">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Légende -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="calendar-legend d-flex justify-content-center flex-wrap gap-3">
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: #28a745;"></span>
+                        <span class="legend-text">Disponible</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: #dc3545;"></span>
+                        <span class="legend-text">Réservé</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: #ffc107;"></span>
+                        <span class="legend-text">Plage bloquée</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modals pour la création/édition d'événements (visible uniquement pour l'admin) -->
+{% if current_user.is_admin %}
+<!-- Modal pour créer un créneau disponible -->
+<div class="modal fade" id="create-slot-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Créer un créneau disponible</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="create-slot-form">
+                    <div class="mb-3">
+                        <label for="slot-title" class="form-label">Titre</label>
+                        <input type="text" class="form-control" id="slot-title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="slot-start" class="form-label">Date et heure de début</label>
+                        <input type="datetime-local" class="form-control" id="slot-start" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="slot-end" class="form-label">Date et heure de fin</label>
+                        <input type="datetime-local" class="form-control" id="slot-end" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="slot-description" class="form-label">Description</label>
+                        <textarea class="form-control" id="slot-description" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" id="save-slot-btn" class="btn btn-success">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal pour bloquer une plage horaire -->
+<div class="modal fade" id="create-block-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Bloquer une plage horaire</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="create-block-form">
+                    <div class="mb-3">
+                        <label for="block-title" class="form-label">Raison</label>
+                        <input type="text" class="form-control" id="block-title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="block-start" class="form-label">Date et heure de début</label>
+                        <input type="datetime-local" class="form-control" id="block-start" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="block-end" class="form-label">Date et heure de fin</label>
+                        <input type="datetime-local" class="form-control" id="block-end" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" id="save-block-btn" class="btn btn-warning">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Modal de demande de réservation (visible pour tous) -->
+<div class="modal fade" id="request-booking-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Demande de réservation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Vous souhaitez réserver le créneau suivant :</p>
+                <p id="booking-details" class="alert alert-info"></p>
+                
+                {% if current_user.is_authenticated %}
+                <form id="booking-form">
+                    <input type="hidden" id="event-id">
+                    <div class="mb-3">
+                        <label for="booking-notes" class="form-label">Notes ou questions</label>
+                        <textarea class="form-control" id="booking-notes" rows="3"></textarea>
+                    </div>
+                </form>
+                {% else %}
+                <div class="alert alert-warning">
+                    <i class="fas fa-user-lock me-2"></i>
+                    Veuillez <a href="{{ url_for('auth.login') }}">vous connecter</a> ou <a href="{{ url_for('auth.register') }}">créer un compte</a> pour effectuer une réservation.
+                </div>
+                {% endif %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                {% if current_user.is_authenticated %}
+                <button type="button" id="confirm-booking-btn" class="btn btn-primary">Confirmer la demande</button>
+                {% else %}
+                <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Se connecter</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Styles spécifiques pour le calendrier -->
+<style>
+    .calendar-container {
+        margin-bottom: 30px;
+    }
+    
+    #calendar {
+        min-height: 650px;
+    }
+    
+    .legend-item {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+    }
+    
+    .legend-color {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
+        border-radius: 3px;
+    }
+</style>
+
+<!-- Chargement des bibliothèques nécessaires -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/locales-all.min.js"></script>
+
+<!-- JavaScript pour initialiser et gérer le calendrier -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialisation du calendrier
+        var calendarEl = document.getElementById('calendar');
+        
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            locale: 'fr',
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            buttonText: {
+                today: "Aujourd'hui",
+                month: 'Mois',
+                week: 'Semaine',
+                day: 'Jour'
+            },
+            slotMinTime: '08:00',
+            slotMaxTime: '20:00',
+            allDaySlot: false,
+            weekends: true,
+            height: 'auto',
+            selectable: {{ 'true' if current_user.is_admin else 'false' }},
+            editable: {{ 'true' if current_user.is_admin else 'false' }},
+            events: '/api/events',
+            eventClick: function(info) {
+                // Si l'événement est disponible, montrer le modal de réservation
+                if (info.event.extendedProps.is_available) {
+                    showBookingModal(info.event);
+                } 
+                {% if current_user.is_admin %}
+                else {
+                    // Pour l'admin: option pour éditer/supprimer
+                    if (confirm('Voulez-vous supprimer cet événement?')) {
+                        deleteEvent(info.event.id);
+                    }
+                }
+                {% endif %}
+            },
+            eventContent: function(arg) {
+                let timeText = arg.timeText;
+                let title = arg.event.title;
+                
+                return {
+                    html: `<div class="fc-event-time">${timeText}</div>
+                           <div class="fc-event-title">${title}</div>`
+                };
+            },
+            eventClassNames: function(arg) {
+                // Ajouter des classes selon le type d'événement
+                if (arg.event.extendedProps.is_available) {
+                    return ['available-slot'];
+                } else if (arg.event.extendedProps.event_type === 'busy') {
+                    return ['blocked-time'];
+                } else {
+                    return ['booked-slot'];
+                }
+            },
+            eventColor: function(arg) {
+                // Définir la couleur selon le type d'événement
+                if (arg.event.extendedProps.is_available) {
+                    return '#28a745'; // Vert pour disponible
+                } else if (arg.event.extendedProps.event_type === 'busy') {
+                    return '#ffc107'; // Jaune pour bloqué
+                } else {
+                    return '#dc3545'; // Rouge pour réservé
+                }
+            }
+        });
+        
+        calendar.render();
+        
+        {% if current_user.is_admin %}
+        // Fonctions pour la gestion du calendrier par l'admin
+        
+        // Création de créneaux disponibles
+        document.getElementById('create-slot-btn').addEventListener('click', function() {
+            // Afficher le modal
+            var createSlotModal = new bootstrap.Modal(document.getElementById('create-slot-modal'));
+            createSlotModal.show();
+        });
+        
+        // Sauvegarde d'un créneau disponible
+        document.getElementById('save-slot-btn').addEventListener('click', function() {
+            const title = document.getElementById('slot-title').value;
+            const start = document.getElementById('slot-start').value;
+            const end = document.getElementById('slot-end').value;
+            const description = document.getElementById('slot-description').value;
+            
+            if (!title || !start || !end) {
+                alert('Veuillez remplir tous les champs obligatoires');
+                return;
+            }
+            
+            // Envoi des données au serveur
+            fetch('/api/events', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: title,
+                    start_time: start,
+                    end_time: end,
+                    description: description,
+                    event_type: 'reservation',
+                    is_available: true
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Fermer le modal
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('create-slot-modal'));
+                    modal.hide();
+                    
+                    // Rafraîchir le calendrier
+                    calendar.refetchEvents();
+                    
+                    // Réinitialiser le formulaire
+                    document.getElementById('create-slot-form').reset();
+                } else {
+                    alert('Erreur lors de la création du créneau: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('Une erreur est survenue: ' + error);
+            });
+        });
+        
+        // Bloquer une plage horaire
+        document.getElementById('create-block-btn').addEventListener('click', function() {
+            // Afficher le modal
+            var createBlockModal = new bootstrap.Modal(document.getElementById('create-block-modal'));
+            createBlockModal.show();
+        });
+        
+        // Sauvegarde d'une plage bloquée
+        document.getElementById('save-block-btn').addEventListener('click', function() {
+            const title = document.getElementById('block-title').value;
+            const start = document.getElementById('block-start').value;
+            const end = document.getElementById('block-end').value;
+            
+            if (!title || !start || !end) {
+                alert('Veuillez remplir tous les champs obligatoires');
+                return;
+            }
+            
+            // Envoi des données au serveur
+            fetch('/api/events', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: title,
+                    start_time: start,
+                    end_time: end,
+                    event_type: 'busy',
+                    is_available: false
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Fermer le modal
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('create-block-modal'));
+                    modal.hide();
+                    
+                    // Rafraîchir le calendrier
+                    calendar.refetchEvents();
+                    
+                    // Réinitialiser le formulaire
+                    document.getElementById('create-block-form').reset();
+                } else {
+                    alert('Erreur lors du blocage de la plage horaire: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('Une erreur est survenue: ' + error);
+            });
+        });
+        
+        // Suppression d'un événement
+        function deleteEvent(eventId) {
+            fetch(`/api/events/${eventId}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    calendar.refetchEvents();
+                } else {
+                    alert('Erreur lors de la suppression: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('Une erreur est survenue: ' + error);
+            });
+        }
+        {% endif %}
+        
+        // Fonction pour afficher le modal de demande de réservation
+        function showBookingModal(event) {
+            // Formater la date et l'heure pour l'affichage
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const startDate = new Date(event.start).toLocaleDateString('fr-FR', options);
+            const startTime = new Date(event.start).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+            const endTime = new Date(event.end).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+            
+            // Mettre à jour les détails dans le modal
+            document.getElementById('booking-details').textContent = `${startDate} de ${startTime} à ${endTime}`;
+            
+            // Stocker l'ID de l'événement si l'utilisateur est connecté
+            {% if current_user.is_authenticated %}
+            document.getElementById('event-id').value = event.id;
+            {% endif %}
+            
+            // Afficher le modal
+            var bookingModal = new bootstrap.Modal(document.getElementById('request-booking-modal'));
+            bookingModal.show();
+        }
+        
+        {% if current_user.is_authenticated %}
+        // Gestion de la demande de réservation
+        document.getElementById('confirm-booking-btn').addEventListener('click', function() {
+            const eventId = document.getElementById('event-id').value;
+            const notes = document.getElementById('booking-notes').value;
+            
+            // Envoi de la demande au serveur
+            fetch('/api/bookings', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    event_id: eventId,
+                    notes: notes
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Fermer le modal
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('request-booking-modal'));
+                    modal.hide();
+                    
+                    // Rafraîchir le calendrier
+                    calendar.refetchEvents();
+                    
+                    // Afficher un message de succès
+                    alert('Votre demande de réservation a été envoyée avec succès !');
+                } else {
+                    alert('Erreur lors de la demande de réservation: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('Une erreur est survenue: ' + error);
+            });
+        });
+        {% endif %}
+    });
+</script>
+{% endblock %}
