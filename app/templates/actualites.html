@@ -9,51 +9,97 @@
     <div class="content-box p-4">
         <h1 class="text-center mb-5">Actualités Wing4All</h1>
         
-        <!-- Article principal -->
-        <div class="row mb-5">
-            <div class="col-12">
-                <div class="card border-0 shadow-sm">
+        
+        <!-- Articles récents -->
+        <h2 class="h4 mb-4 text-primary">Articles récents</h2>
+        <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+            <!-- Article 1: Une passion née -->
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm hover-zoom">
+                    <img src="{{ url_for('static', filename='img/articles/actus/une_passion_née.jpeg') }}" class="card-img-top" alt="Une passion née" style="height: 200px; object-fit: cover;">
                     <div class="card-body">
-                        <h2 class="h3 mb-3 text-primary">Lancement officiel de Wing4All prévu pour le 1er mai 2025</h2>
-                        <p class="text-muted mb-3">Publié le 17 avril 2025</p>
-                        <div class="mb-4">
-                            <img src="{{ url_for('static', filename='img/base/intro.png') }}" alt="Lancement Wing4All" class="img-fluid rounded mb-3" style="max-height: 300px; width: 100%; object-fit: cover;">
-                        </div>
-                        <div class="news-content">
-                            <p>J'ai le plaisir de vous annoncer le lancement officiel de Wing4All prévu pour le <strong>1er mai 2025</strong>. Après plusieurs mois de préparation, je serai enfin prêt à vous proposer mes services de location de matériel de wingfoil à Saint-Malo.</p>
-                            
-                            <p>Pour célébrer ce lancement, je prévois :</p>
-                            <ul>
-                                <li>Une journée portes ouvertes avec démonstrations de matériel</li>
-                                <li>Des réductions spéciales pour les premiers clients</li>
-                                <li>Un tirage au sort pour gagner une session gratuite</li>
-                            </ul>
-                            <div class="text-center mt-4">
-                                <a href="{{ url_for('main.contact') }}" class="btn btn-primary">
-                                    <i class="fas fa-envelope me-2"></i>Me contacter
-                                </a>
-                            </div>
-                        </div>
+                        <span class="badge bg-primary mb-2">Histoire</span>
+                        <h3 class="h5 card-title">Une passion née pour le wingfoil</h3>
+                        <p class="card-text text-muted small">Publié le 1er mai 2025</p>
+                        <p class="card-text">Découvrez comment est née ma passion pour le wingfoil et comment cette aventure m'a mené à créer Wing4All.</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="{{ url_for('main.article_conseils', article_name='une_passion_nee') }}" class="btn btn-outline-primary btn-sm">Lire la suite</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article 2: Préparation du matos -->
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm hover-zoom">
+                    <img src="{{ url_for('static', filename='img/articles/actus/prepaTest_matos.jpeg') }}" class="card-img-top" alt="Préparation du matériel" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <span class="badge bg-success mb-2">Conseils</span>
+                        <h3 class="h5 card-title">Préparation du matériel de wingfoil</h3>
+                        <p class="card-text text-muted small">Publié le 5 mai 2025</p>
+                        <p class="card-text">Les étapes essentielles pour préparer votre matériel de wingfoil avant une session.</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="{{ url_for('main.article_conseils', article_name='preparation_du_matos') }}" class="btn btn-outline-primary btn-sm">Lire la suite</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article 3: Ouverture de Wing4All -->
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm hover-zoom">
+                    <img src="{{ url_for('static', filename='img/articles/actus/ouverture.jpeg') }}" class="card-img-top" alt="Ouverture de Wing4All" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <span class="badge bg-warning text-dark mb-2">Événement</span>
+                        <h3 class="h5 card-title">Ouverture officielle de Wing4All</h3>
+                        <p class="card-text text-muted small">Publié le 15 avril 2025</p>
+                        <p class="card-text">Découvrez l'ouverture officielle de Wing4All, votre nouveau service de location de matériel de wingfoil.</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="{{ url_for('main.article_conseils', article_name='ouverture_de_wing4all') }}" class="btn btn-outline-primary btn-sm">Lire la suite</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article 4: Réception du matériel -->
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm hover-zoom">
+                    <img src="{{ url_for('static', filename='img/articles/actus/reception_com.jpeg') }}" class="card-img-top" alt="Réception du matériel" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <span class="badge bg-info mb-2">Équipement</span>
+                        <h3 class="h5 card-title">Réception du matériel Wing4All</h3>
+                        <p class="card-text text-muted small">Publié le 10 avril 2025</p>
+                        <p class="card-text">Découvrez le nouveau matériel de wingfoil fraîchement reçu pour Wing4All.</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="{{ url_for('main.article_conseils', article_name='reception_com') }}" class="btn btn-outline-primary btn-sm">Lire la suite</a>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Espace pour les futures actualités -->
-        <div class="row">
-            <div class="col-12">
-                <div class="alert alert-info text-center">
-                    <i class="fas fa-newspaper me-2"></i>
-                    D'autres actualités seront publiées prochainement. Revenez nous voir !
-                </div>
+        <!-- S'abonner aux actualités
+        <div class="card bg-light border-0 shadow-sm mt-4">
+            <div class="card-body text-center p-4">
+                <h3 class="h5 mb-3">Restez informé de nos dernières actualités</h3>
+                <p class="mb-3">Inscrivez-vous à notre newsletter pour recevoir les dernières nouveautés, conseils et promotions.</p>
+                <a href="{{ url_for('main.contact') }}" class="btn btn-primary">
+                    <i class="fas fa-envelope me-2"></i>S'inscrire à la newsletter
+                </a>
             </div>
-        </div>
+        </div-->
     </div>
 </div>
 
 <style>
 .news-content {
     line-height: 1.8;
+}
+.hover-zoom {
+    transition: transform 0.3s ease;
+}
+.hover-zoom:hover {
+    transform: translateY(-5px);
 }
 </style>
 {% endblock %}

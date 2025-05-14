@@ -78,6 +78,36 @@ def planning():
     )
     return render_template('planning.html', meta_tags=meta_tags)
 
+@bp.route('/articles-conseils/<article_name>')
+def article_conseils(article_name):
+    # Titre et description par défaut
+    title = "Article Wing4All"
+    description = "Actualités, conseils et informations sur la pratique du wingfoil et la location de matériel à Saint-Malo."
+    
+    # Personnalisation selon l'article
+    if article_name == "une_passion_nee":
+        title = "Une passion née pour le wingfoil"
+        description = "Découvrez comment est née la passion pour le wingfoil et comment cette aventure a mené à la création de Wing4All à Saint-Malo."
+    elif article_name == "preparation_du_matos":
+        title = "Préparation du matériel de wingfoil"
+        description = "Les étapes essentielles pour préparer votre matériel de wingfoil avant une session. Conseils pratiques d'entretien."
+    elif article_name == "ouverture_de_wing4all":
+        title = "Ouverture officielle de Wing4All"
+        description = "L'ouverture officielle de Wing4All, votre nouveau service de location de matériel de wingfoil à Saint-Malo."
+    elif article_name == "reception_com":
+        title = "Réception du matériel Wing4All"
+        description = "Découverte du nouveau matériel de wingfoil fraîchement reçu pour Wing4All à Saint-Malo."
+    
+    meta_tags = generate_meta_tags(title=title, description=description)
+    
+    try:
+        # Essayer de rendre le template approprié
+        return render_template(f'articles_conseils/{article_name}.html', meta_tags=meta_tags)
+    except:
+        # Si le template n'existe pas, rediriger vers la page d'actualités
+        flash("L'article demandé n'existe pas.", "warning")
+        return redirect(url_for('main.actualites'))
+
 # Routes API pour le calendrier
 
 @bp.route('/api/events', methods=['GET'])

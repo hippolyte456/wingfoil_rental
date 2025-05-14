@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Une passion née pour le wingfoil{% endblock %}
+
+{% block meta_description %}Découvrez comment est née ma passion pour le wingfoil et comment cette aventure m'a mené à créer Wing4All à Saint-Malo pour partager cette discipline avec tous.{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="content-box p-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4">Une passion née pour le wingfoil</h1>
+                <p class="text-muted">Publié le 1er mai 2025</p>
+                
+                <div class="article-content">
+                    <div class="mb-4">
+                        <img src="{{ url_for('static', filename='img/articles/actus/une_passion_née.jpeg') }}" alt="Passion wingfoil" class="img-fluid rounded mb-3">
+                        
+                        <p>Il y a quelques années, j'ai découvert le wingfoil presque par hasard. Une journée venteuse à la plage, j'ai observé ces riders qui semblaient voler au-dessus de l'eau. La sensation de liberté qu'ils dégageaient m'a immédiatement fasciné.</p>
+                        
+                        <p>Ma première session fut un mélange de frustration et d'exaltation. Comme tout débutant, mes chutes étaient nombreuses, mais cette première sensation de glisse au-dessus de l'eau a suffi pour me faire comprendre que j'avais trouvé ma passion.</p>
+                        
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <img src="{{ url_for('static', filename='img/articles/actus/une_passion_née2.jpeg') }}" alt="Pratique du wingfoil" class="img-fluid rounded mb-3">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="{{ url_for('static', filename='img/articles/actus/une_passion_née3.jpeg') }}" alt="Session wingfoil" class="img-fluid rounded mb-3">
+                            </div>
+                        </div>
+                        
+                        <p class="mt-3">Après des années de pratique intensive et une formation de moniteur, j'ai décidé de créer Wing4All pour partager cette passion. Mon objectif : rendre le wingfoil accessible à tous en proposant du matériel de qualité à la location et un accompagnement personnalisé.</p>
+                        
+                        <p>Aujourd'hui, je suis heureux de pouvoir partager cette passion avec vous et de vous accompagner dans votre découverte ou votre progression dans ce sport extraordinaire.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-5">
+                    <a href="{{ url_for('main.conseils') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-arrow-left me-2"></i> Retour aux conseils
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
