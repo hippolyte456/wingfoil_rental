@@ -9,76 +9,61 @@
     <div class="content-box p-4">
         <h1 class="text-center mb-5">Actualités Wing4All</h1>
         
-        
-        <!-- Articles récents -->
-        <h2 class="h4 mb-4 text-primary">Articles récents</h2>
-        <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
-            <!-- Article 1: Une passion née -->
-            <div class="col">
-                <div class="card h-100 border-0 shadow-sm hover-zoom">
-                    <img src="{{ url_for('static', filename='img/articles/actus/une_passion_née.jpeg') }}" class="card-img-top" alt="Une passion née" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <span class="badge bg-primary mb-2">Histoire</span>
-                        <h3 class="h5 card-title">Une passion née pour le wingfoil</h3>
-                        <p class="card-text text-muted small">Publié le 1er mai 2025</p>
-                        <p class="card-text">Découvrez comment est née ma passion pour le wingfoil et comment cette aventure m'a mené à créer Wing4All.</p>
+        <!-- Article principal (le plus récent) -->
+        {% if articles %}
+        <div class="row mb-5">
+            <div class="col-12">
+                <a href="{{ url_for('main.article_conseils', article_name=articles[0].slug) }}" class="article-link text-decoration-none text-dark">
+                    <div class="card border-0 shadow-sm hover-zoom">
+                        <div class="card-body">
+                            <h2 class="h3 mb-3 text-primary">{{ articles[0].title }}</h2>
+                            <p class="text-muted mb-3">Publié le {{ articles[0].publish_date.strftime('%d %B %Y') }}</p>
+                            <div class="mb-4">
+                                <img src="{{ url_for('static', filename=articles[0].image_path) }}" alt="{{ articles[0].title }}" class="img-fluid rounded mb-3" style="max-height: 300px; width: 100%; object-fit: cover;">
+                            </div>
+                            <div class="news-content">
+                                <p>{{ articles[0].summary }}</p>
+                                <div class="text-center mt-4">
+                                    <span class="btn btn-primary">
+                                        <i class="fas fa-book-open me-2"></i>Lire l'article complet
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-footer bg-white border-0">
-                        <a href="{{ url_for('main.article_conseils', article_name='une_passion_nee') }}" class="btn btn-outline-primary btn-sm">Lire la suite</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Article 2: Préparation du matos -->
-            <div class="col">
-                <div class="card h-100 border-0 shadow-sm hover-zoom">
-                    <img src="{{ url_for('static', filename='img/articles/actus/prepaTest_matos.jpeg') }}" class="card-img-top" alt="Préparation du matériel" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <span class="badge bg-success mb-2">Conseils</span>
-                        <h3 class="h5 card-title">Préparation du matériel de wingfoil</h3>
-                        <p class="card-text text-muted small">Publié le 5 mai 2025</p>
-                        <p class="card-text">Les étapes essentielles pour préparer votre matériel de wingfoil avant une session.</p>
-                    </div>
-                    <div class="card-footer bg-white border-0">
-                        <a href="{{ url_for('main.article_conseils', article_name='preparation_du_matos') }}" class="btn btn-outline-primary btn-sm">Lire la suite</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Article 3: Ouverture de Wing4All -->
-            <div class="col">
-                <div class="card h-100 border-0 shadow-sm hover-zoom">
-                    <img src="{{ url_for('static', filename='img/articles/actus/ouverture.jpeg') }}" class="card-img-top" alt="Ouverture de Wing4All" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <span class="badge bg-warning text-dark mb-2">Événement</span>
-                        <h3 class="h5 card-title">Ouverture officielle de Wing4All</h3>
-                        <p class="card-text text-muted small">Publié le 15 avril 2025</p>
-                        <p class="card-text">Découvrez l'ouverture officielle de Wing4All, votre nouveau service de location de matériel de wingfoil.</p>
-                    </div>
-                    <div class="card-footer bg-white border-0">
-                        <a href="{{ url_for('main.article_conseils', article_name='ouverture_de_wing4all') }}" class="btn btn-outline-primary btn-sm">Lire la suite</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Article 4: Réception du matériel -->
-            <div class="col">
-                <div class="card h-100 border-0 shadow-sm hover-zoom">
-                    <img src="{{ url_for('static', filename='img/articles/actus/reception_com.jpeg') }}" class="card-img-top" alt="Réception du matériel" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <span class="badge bg-info mb-2">Équipement</span>
-                        <h3 class="h5 card-title">Réception du matériel Wing4All</h3>
-                        <p class="card-text text-muted small">Publié le 10 avril 2025</p>
-                        <p class="card-text">Découvrez le nouveau matériel de wingfoil fraîchement reçu pour Wing4All.</p>
-                    </div>
-                    <div class="card-footer bg-white border-0">
-                        <a href="{{ url_for('main.article_conseils', article_name='reception_com') }}" class="btn btn-outline-primary btn-sm">Lire la suite</a>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
         
-        <!-- S'abonner aux actualités
+        <!-- Articles récents (sauf le premier qui est l'article principal) -->
+        <h2 class="h4 mb-4 text-primary">Autres articles récents</h2>
+        <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+            {% for article in articles[1:] %}
+            <div class="col">
+                <a href="{{ url_for('main.article_conseils', article_name=article.slug) }}" class="article-link text-decoration-none text-dark">
+                    <div class="card h-100 border-0 shadow-sm hover-zoom">
+                        <img src="{{ url_for('static', filename=article.image_path) }}" class="card-img-top" alt="{{ article.title }}" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <span class="badge {{ article.category_style }} mb-2">{{ article.category }}</span>
+                            <h3 class="h5 card-title">{{ article.title }}</h3>
+                            <p class="card-text text-muted small">Publié le {{ article.publish_date.strftime('%d %B %Y') }}</p>
+                            <p class="card-text">{{ article.summary }}</p>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <span class="btn btn-outline-primary btn-sm">Lire la suite</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            <p class="mb-0">D'autres actualités seront publiées prochainement.</p>
+        </div>
+        {% endif %}
+        
+        <!-- S'abonner aux actualités 
         <div class="card bg-light border-0 shadow-sm mt-4">
             <div class="card-body text-center p-4">
                 <h3 class="h5 mb-3">Restez informé de nos dernières actualités</h3>
@@ -100,6 +85,20 @@
 }
 .hover-zoom:hover {
     transform: translateY(-5px);
+}
+.article-link:hover {
+    text-decoration: none;
+}
+.article-link .card {
+    cursor: pointer;
+}
+.article-link:hover .btn-primary {
+    background-color: var(--bs-primary-hover, #0069d9);
+    border-color: var(--bs-primary-hover, #0062cc);
+}
+.article-link:hover .btn-outline-primary {
+    color: white;
+    background-color: var(--bs-primary, #007bff);
 }
 </style>
 {% endblock %}

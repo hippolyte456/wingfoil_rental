@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for,
 from .seo import generate_meta_tags, generate_structured_data
 from flask_login import current_user, login_required
 from app.models.calendar import CalendarEvent
+from app.models.article import get_sorted_articles, get_article_by_slug
 from app import db
 from datetime import datetime, timedelta
 
@@ -68,7 +69,9 @@ def actualites():
         title="Actualités Wing4All",
         description="Suivez toutes les actualités de Wing4All : événements, nouveautés, promotions et informations sur la location de matériel de wingfoil."
     )
-    return render_template('actualites.html', meta_tags=meta_tags)
+    # Récupérer les articles triés du plus récent au plus ancien
+    articles = get_sorted_articles(reverse=True)
+    return render_template('actualites.html', meta_tags=meta_tags, articles=articles)
 
 @bp.route('/planning')
 def planning():
@@ -80,29 +83,20 @@ def planning():
 
 @bp.route('/articles-conseils/<article_name>')
 def article_conseils(article_name):
-    # Titre et description par défaut
-    title = "Article Wing4All"
-    description = "Actualités, conseils et informations sur la pratique du wingfoil et la location de matériel à Saint-Malo."
+    # Récupérer l'article par son slug
+    article = get_article_by_slug(article_name)
     
-    # Personnalisation selon l'article
-    if article_name == "une_passion_nee":
-        title = "Une passion née pour le wingfoil"
-        description = "Découvrez comment est née la passion pour le wingfoil et comment cette aventure a mené à la création de Wing4All à Saint-Malo."
-    elif article_name == "preparation_du_matos":
-        title = "Préparation du matériel de wingfoil"
-        description = "Les étapes essentielles pour préparer votre matériel de wingfoil avant une session. Conseils pratiques d'entretien."
-    elif article_name == "ouverture_de_wing4all":
-        title = "Ouverture officielle de Wing4All"
-        description = "L'ouverture officielle de Wing4All, votre nouveau service de location de matériel de wingfoil à Saint-Malo."
-    elif article_name == "reception_com":
-        title = "Réception du matériel Wing4All"
-        description = "Découverte du nouveau matériel de wingfoil fraîchement reçu pour Wing4All à Saint-Malo."
+    if not article:
+        # Si l'article n'existe pas, rediriger vers la page d'actualités
+        flash("L'article demandé n'existe pas.", "warning")
+        return redirect(url_for('main.actualites'))
     
-    meta_tags = generate_meta_tags(title=title, description=description)
+    # Utiliser les métadonnées de l'article pour la SEO
+    meta_tags = generate_meta_tags(title=article.title, description=article.description)
     
     try:
         # Essayer de rendre le template approprié
-        return render_template(f'articles_conseils/{article_name}.html', meta_tags=meta_tags)
+        return render_template(f'articles_conseils/{article_name}.html', meta_tags=meta_tags, article=article)
     except:
         # Si le template n'existe pas, rediriger vers la page d'actualités
         flash("L'article demandé n'existe pas.", "warning")
