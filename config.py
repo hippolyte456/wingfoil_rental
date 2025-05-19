@@ -8,7 +8,7 @@ load_dotenv(os.path.join(basedir, '.env'))
 LOGO_PATH = 'img/logo/logo_wingfoil-rm-bg.png'
 
 # Contact email used across the application
-CONTACT_EMAIL = 'hippolytedreyfus@orange.fr'
+CONTACT_EMAIL = 'contact@wing4all.fr'
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-key-to-change-in-production'
