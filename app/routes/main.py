@@ -81,6 +81,21 @@ def planning():
     )
     return render_template('planning.html', meta_tags=meta_tags)
 
+@bp.route('/events')
+def events():
+    meta_tags = generate_meta_tags(
+        title="Événements Wingfoil - Wing4All",
+        description="Découvrez les événements wingfoil organisés à Saint-Malo. Initiations, compétitions et rencontres autour de la pratique du wingfoil."
+    )
+    # Récupérer les prochains événements
+    now = datetime.now()
+    upcoming_events = CalendarEvent.query.filter(
+        CalendarEvent.start_time >= now,
+        CalendarEvent.event_type == 'event'
+    ).order_by(CalendarEvent.start_time).limit(10).all()
+    
+    return render_template('events.html', meta_tags=meta_tags, events=upcoming_events)
+
 @bp.route('/articles-conseils/<article_name>')
 def article_conseils(article_name):
     # Récupérer l'article par son slug

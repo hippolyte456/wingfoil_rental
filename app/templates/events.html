@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block title %}Organisation d'Événements - Wing4All{% endblock %}
+
+{% block content %}
+<section class="container my-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center mb-4">Organisation d'Événements</h1>
+            <div class="card shadow mb-5">
+                <div class="card-body">
+                    <h2 class="card-title mb-3">Formule Événementielle Complète</h2>
+                    <p class="lead">Offrez à votre équipe ou à vos clients une journée inoubliable alliant wingfoil et navigation légère à Saint-Malo.</p>
+                    
+                    <hr class="my-4">
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="h-100 p-4 bg-light rounded">
+                                <h3>Notre Offre Comprend</h3>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Location de matériel wingfoil complet</li>
+                                    <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Initiation au wingfoil avec Wing4All</li>
+                                    <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Navigation en catamaran avec Surfschool Saint-Malo</li>
+                                    <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Encadrement par des moniteurs diplômés</li>
+                                    <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Organisation logistique complète</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="h-100 p-4 bg-light rounded">
+                                <h3>Idéal Pour</h3>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-users text-primary me-2"></i> Team building d'entreprise</li>
+                                    <li class="mb-2"><i class="fas fa-glass-cheers text-primary me-2"></i> Séminaires et incentives</li>
+                                    <li class="mb-2"><i class="fas fa-birthday-cake text-primary me-2"></i> Événements privés</li>
+                                    <li class="mb-2"><i class="fas fa-graduation-cap text-primary me-2"></i> Sorties de groupe</li>
+                                    <li class="mb-2"><i class="fas fa-heart text-primary me-2"></i> Enterrements de vie de célibataire</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-4 border-primary">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="mb-0">Déroulement d'une Journée Type</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h4>9h00 - Accueil</h4>
+                                        <p>Présentation de la journée et briefing sécurité</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h4>9h30 - 12h00</h4>
+                                        <p>Session d'initiation au wingfoil</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h4>12h00 - 13h30</h4>
+                                        <p>Pause déjeuner (possibilité d'organiser un repas selon vos envies)</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h4>13h30 - 16h00</h4>
+                                        <p>Navigation en catamaran avec Surfschool Saint-Malo</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h4>16h00 - 17h00</h4>
+                                        <p>Pot de clôture et échanges sur les expériences de la journée</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <h3>Personnalisation</h3>
+                        <p>Nous adaptons notre offre à vos besoins spécifiques. Nombre de participants, niveau, durée, compléments d'activités... Contactez-nous pour créer votre événement sur mesure.</p>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <a href="{{ url_for('main.contact') }}" class="btn btn-primary btn-lg px-5">Demander un devis</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow">
+                        <div class="card-body">
+                            <h3>Pourquoi choisir notre formule événementielle ?</h3>
+                            <p>Notre combinaison unique wingfoil + navigation légère offre une expérience complète qui allie:</p>
+                            <ul>
+                                <li>Dépassement de soi avec le wingfoil</li>
+                                <li>Esprit d'équipe avec le catamaran</li>
+                                <li>Découverte d'un sport en plein essor</li>
+                                <li>Cadre exceptionnel de la baie de Saint-Malo</li>
+                                <li>Accompagnement par des professionnels passionnés</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow">
+                        <div class="card-body">
+                            <h3>Témoignages</h3>
+                            <div class="mb-3">
+                                <p class="fst-italic">"Une journée parfaite pour notre team-building annuel. L'équipe a adoré découvrir le wingfoil et la sortie en catamaran a créé une véritable cohésion!"</p>
+                                <p class="text-end fw-bold">— Marie D., Responsable RH</p>
+                            </div>
+                            <div>
+                                <p class="fst-italic">"Organisation impeccable et prestations de qualité. Merci pour cette journée qui restera dans nos mémoires!"</p>
+                                <p class="text-end fw-bold">— Thomas L., Chef d'entreprise</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.timeline {
+    position: relative;
+    padding: 0;
+    list-style: none;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 10px;
+    width: 2px;
+    background-color: #e9ecef;
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 20px;
+}
+
+.timeline-marker {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #007bff;
+    border: 3px solid #ffffff;
+    box-shadow: 0 0 0 2px #007bff;
+}
+
+.timeline-content h4 {
+    margin-bottom: 5px;
+    color: #007bff;
+}
+</style>
+{% endblock %}
