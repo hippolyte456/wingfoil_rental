@@ -3,19 +3,67 @@ from .seo import generate_meta_tags, generate_structured_data
 from flask_login import current_user, login_required
 from app.models.calendar import CalendarEvent
 from app.models.article import get_sorted_articles, get_article_by_slug
+from app.models.site import Site
 from app import db
 from datetime import datetime, timedelta
+import json
 
 bp = Blueprint('main', __name__)
 
 @bp.route('/')
-def home():
+def franchise():
     meta_tags = generate_meta_tags(
-        title="Location de Wingfoil à Saint-Malo",
-        description="Location de matériel de wingfoil à Saint-Malo. Wings, foils et planches de qualité pour tous les niveaux. Conseils et accompagnement personnalisé."
+        title="Wing4All - Réseau de location de Wingfoil en France",
+        description="Découvrez le réseau Wing4All de location de matériel de wingfoil en France. Plusieurs sites pour vous accompagner dans votre pratique du wingfoil."
+    )
+    structured_data = generate_structured_data("Organization", {})
+    
+    # Récupérer tous les sites actifs
+    sites = Site.query.filter_by(is_active=True).all()
+    
+    # Vérifier que chaque site a des coordonnées valides pour la carte
+    valid_sites = []
+    for site in sites:
+        if site.latitude is not None and site.longitude is not None:
+            valid_sites.append(site)
+        else:
+            print(f"Warning: Site {site.name} missing coordinates")
+    
+    # Préparer les données JSON pour la carte
+    sites_json = json.dumps([{
+        'name': site.name,
+        'slug': site.slug,
+        'lat': float(site.latitude),  # Convertir explicitement en float pour JSON
+        'lng': float(site.longitude), # Convertir explicitement en float pour JSON
+        'description': site.description
+    } for site in valid_sites])
+    
+    # Afficher les coordonnées pour le débogage
+    for site in valid_sites:
+        print(f"DEBUG - Site: {site.name}, Lat: {site.latitude}, Lng: {site.longitude}")
+        
+    return render_template('franchise.html', 
+                          meta_tags=meta_tags, 
+                          structured_data=structured_data,
+                          sites=sites,
+                          sites_json=sites_json)
+
+# Route maintenue pour la compatibilité avec les références existantes
+@bp.route('/home')
+def home():
+    return redirect(url_for('main.franchise'))
+
+@bp.route('/site/<site_slug>')
+def site_home(site_slug):
+    # Récupérer le site correspondant au slug
+    site = Site.query.filter_by(slug=site_slug).first_or_404()
+    
+    meta_tags = generate_meta_tags(
+        title=f"Location de Wingfoil à {site.city} - {site.name}",
+        description=f"Location de matériel de wingfoil à {site.city}. Wings, foils et planches de qualité pour tous les niveaux. Conseils et accompagnement personnalisé."
     )
     structured_data = generate_structured_data("LocalBusiness", {})
-    return render_template('home.html', meta_tags=meta_tags, structured_data=structured_data)
+    return render_template('home.html', meta_tags=meta_tags, structured_data=structured_data, site=site)
 
 @bp.route('/conseils')
 def conseils():

@@ -9,4 +9,5 @@ class Equipment(db.Model):
     price_per_day = db.Column(db.Float, nullable=False)
     available = db.Column(db.Boolean, default=True)
     image_url = db.Column(db.String(200))
-    reservations = db.relationship('Reservation', backref='equipment', lazy=True) 
+    site_id = db.Column(db.Integer, db.ForeignKey('site.id'), nullable=False)
+    reservations = db.relationship('Reservation', backref='equipment', lazy=True)

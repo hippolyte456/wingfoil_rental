@@ -21,6 +21,7 @@ class CalendarEvent(db.Model):
     # Relations avec les réservations et l'utilisateur admin
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
     reservation_id = db.Column(db.Integer, db.ForeignKey('reservation.id'), nullable=True)
+    site_id = db.Column(db.Integer, db.ForeignKey('site.id'), nullable=True)
     
     # Relations
     created_by = db.relationship('User', backref='created_events')

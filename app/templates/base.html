@@ -28,6 +28,8 @@
             background-position: center;
         }
     </style>
+    {% block seo %}{% endblock %}
+    {% block head %}{% endblock %}
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-primary">
@@ -165,6 +167,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
     <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
     <script src="{{ url_for('static', filename='js/filters.js') }}" defer></script>
+    
+    {% block scripts %}{% endblock %}
     
     <!-- Schema.org markup pour une meilleure compréhension par les moteurs de recherche -->
     <script type="application/ld+json">
