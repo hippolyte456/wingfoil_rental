@@ -14,62 +14,102 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin=""/>
+    <style>
+        .site-card {
+            position: relative;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            cursor: pointer;
+        }
+        .site-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .site-card-image {
+            height: 200px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        .site-card-content {
+            padding: 20px;
+        }
+        .site-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
-<section class="network-intro bg-primary text-white py-4">
-    <div class="container">
-        <h1 class="display-5 mb-3">Notre réseau d'écoles de wingfoil</h1>
-        <p class="lead">Découvrez nos points de location dans les meilleurs spots de wingfoil en France</p>
-    </div>
-</section>
-
-<section class="locations py-5">
-    <div class="container">
-        <h2 class="text-center mb-5">Carte des emplacements Wing4All</h2>
-        
-        <div class="row mb-5">
-            <div class="col-12">
-                <div id="map" style="height: 500px; width: 100%;"></div>
-            </div>
-        </div>
-        
-        <h2 class="text-center mb-4">Liste des sites Wing4All</h2>
-        <div class="row">
-            {% for site in sites %}
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">{{ site.name }}</h3>
-                            <p class="card-text">{{ site.description }}</p>
-                            <p><strong>Adresse:</strong> {{ site.address }}, {{ site.postal_code }} {{ site.city }}</p>
-                            <p><strong>Contact:</strong> {{ site.phone }}</p>
-                            <a href="{{ url_for('main.site_home', site_slug=site.slug) }}" class="btn btn-primary">Voir ce site</a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-<section class="join-us py-5 bg-light">
-    <div class="container">
-        <h2 class="text-center mb-4">Rejoindre le réseau Wing4All</h2>
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-body">
-                        <p>Vous êtes passionné de wingfoil et souhaitez ouvrir une franchise Wing4All dans votre région ? Contactez-nous pour découvrir les opportunités d'affaires et bénéficier de notre expertise.</p>
-                        <div class="text-center">
-                            <a href="{{ url_for('main.contact_franchise') }}" class="btn btn-primary">Nous contacter</a>
-                        </div>
+<div class="container-fluid content-text homepage-container">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            <div class="content-box p-4 rounded">
+                <h2 class="mb-4"><strong>Notre réseau d'écoles de wingfoil</strong></h2>
+                <p class="lead mb-4">
+                    <strong>Découvrez nos points de location dans les meilleurs spots de wingfoil en France</strong>
+                </p>
+                
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <div id="map" style="height: 500px; width: 100%;"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
+
+<div class="container-fluid content-text mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            <div class="content-box p-4 rounded">
+                <h2 class="mb-4"><strong>Liste des sites Wing4All</strong></h2>
+                
+                <div class="row justify-content-center">
+                    {% for site in sites %}
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="site-card" onclick="window.location='{{ url_for('main.site_home', site_slug=site.slug) }}'">
+                                <div class="site-card-image" style="background-image: url('{{ url_for('static', filename='img/base/sites/' + site.slug + '.png') }}')"></div>
+                                <div class="site-card-content">
+                                    <h3>{{ site.name }}</h3>
+                                    <p>{{ site.description }}</p>
+                                    <p><strong>Adresse:</strong> {{ site.address }}, {{ site.postal_code }} {{ site.city }}</p>
+                                    <p><strong>Contact:</strong> {{ site.phone }}</p>
+                                </div>
+                                <a href="{{ url_for('main.site_home', site_slug=site.slug) }}" class="site-card-overlay" aria-label="Voir le site {{ site.name }}"></a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid content-text mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            <div class="content-box p-4 rounded">
+                <h2 class="mb-4"><strong>Rejoindre le réseau Wing4All</strong></h2>
+                <p class="lead mb-4">
+                    <strong>Vous êtes passionné de wingfoil et souhaitez ouvrir une franchise Wing4All dans votre région ? Contactez-nous pour découvrir les opportunités d'affaires et bénéficier de notre expertise.</strong>
+                </p>
+                <div class="text-center mt-4">
+                    <a href="{{ url_for('main.contact_franchise') }}" class="btn btn-primary btn-lg">Nous contacter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block scripts %}

@@ -41,19 +41,6 @@ def seed_sites():
             email="frejus@wing4all.fr",
             is_active=True
         ),
-        Site(
-            name="Leucate",
-            slug="leucate",
-            description="Spot de wingfoil Wing4All situé dans l'Aude, connu pour ses conditions de vent exceptionnelles et son plan d'eau adapté à tous les niveaux.",
-            address="Port Leucate",
-            postal_code="11370",
-            city="Leucate",
-            latitude=42.9421,
-            longitude=3.0555,
-            phone="06 45 67 89 01",
-            email="leucate@wing4all.fr",
-            is_active=True
-        )
     ]
     
     # Ajout des sites à la base de données

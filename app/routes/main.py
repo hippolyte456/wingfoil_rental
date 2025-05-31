@@ -394,3 +394,11 @@ def create_booking():
         print(f"DEBUG - Erreur générale: {str(e)}")
         db.session.rollback()
         return jsonify({'success': False, 'message': str(e)}), 500
+
+@bp.route('/partenariats')
+def partenariats():
+    meta_tags = generate_meta_tags(
+        title="Nos partenariats - Wing4All",
+        description="Découvrez les partenariats de Wing4All pour la promotion d'une pratique éco-responsable et accessible du wingfoil."
+    )
+    return render_template('franchise/partenariats.html', meta_tags=meta_tags)

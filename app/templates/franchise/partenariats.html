@@ -1,0 +1,25 @@
+{% extends 'franchise/base_franchise.html' %}
+{% from 'includes/seo_tags.html' import render_meta_tags, render_structured_data %}
+{% block title %}Nos partenariats - Wing4All{% endblock %}
+
+{% block seo %}
+    {{ render_meta_tags(meta_tags) }}
+    {% if structured_data %}
+        {{ render_structured_data(structured_data) }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid content-text homepage-container">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            <div class="content-box p-4 rounded">
+                <h2 class="mb-4"><strong>Nos partenariats</strong></h2>
+                <p class="lead mb-4">
+                    <strong>Page en construction</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

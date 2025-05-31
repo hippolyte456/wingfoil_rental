@@ -69,9 +69,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('main.contact', site_slug=site.slug) }}">Contact</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.franchise') }}">Réseau Wing4All</a>
-                    </li>
+                    
                     {% if current_user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('equipment.my_reservations') }}">Mes Réservations</a>
@@ -92,7 +90,7 @@
                         <a class="nav-link" href="{{ url_for('main.contact_franchise') }}">Contact</a>
                     </li>
                     {% endif %}
-                </ul>
+                <!--/ul>
                 {% if current_user.is_authenticated %}
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
@@ -122,7 +120,7 @@
                         </a>
                     </li>
                 </ul>
-                {% endif %}
+                {% endif %} -->
             </div>
         </div>
     </nav>
