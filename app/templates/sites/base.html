@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block meta_description %}Location de matériel de wingfoil en France. Découvrez nos formules de location, conseils et équipements de qualité pour votre pratique du wingfoil.{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}wingfoil, location wingfoil, wing foil, location wing, cours wingfoil{% endblock %}">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Wing4All - {% block og_title %}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Location de matériel de wingfoil en France{% endblock %}">
+    <meta property="og:image" content="{{ url_for('static', filename=LOGO_PATH, _external=True) }}">
+    <meta property="og:url" content="{{ request.url }}">
+    <link rel="canonical" href="{{ request.url }}" />
+    <title>Wing4All - {% block title %}{% endblock %} | Location de Wingfoil{% if site %} {{ site.city }}{% endif %}</title>
+    <!-- Preload des ressources critiques -->
+    <link rel="preload" href="{{ url_for('static', filename=LOGO_PATH) }}" as="image" type="image/png">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename=LOGO_PATH) }}">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preload" href="{{ url_for('static', filename='css/style.css') }}?v=1" as="style">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1">
+    <style>
+        /* Moved inline styles to CSS */
+        body {
+            background-image: url('{% block background_image %}{{ url_for("static", filename="img/base/intro.png") }}{% endblock %}');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+    {% block seo %}{% endblock %}
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container">
+            {% if site %}
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main.site_home', site_slug=site.slug) }}">
+                <img src="{{ url_for('static', filename=LOGO_PATH) }}" alt="Logo" width="100" height="100" class="d-inline-block align-text-top me-2">
+                <span class="ms-2">{{ site.name }}</span>
+            </a>
+            {% else %}
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main.franchise') }}">
+                <img src="{{ url_for('static', filename=LOGO_PATH) }}" alt="Logo" width="100" height="100" class="d-inline-block align-text-top me-2">
+            </a>
+            {% endif %}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <!-- Menu du site local -->
+                    {% if site %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.site_home', site_slug=site.slug) }}">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.formules', site_slug=site.slug) }}">Formules</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('equipment.equipment_list', site_slug=site.slug) }}">Locations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.events', site_slug=site.slug) }}">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.planning', site_slug=site.slug) }}">Planning</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.contact', site_slug=site.slug) }}">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.franchise') }}">Réseau Wing4All</a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('equipment.my_reservations') }}">Mes Réservations</a>
+                    </li>
+                    {% endif %}
+                    {% else %}
+                    <!-- Menu de secours si pas de site spécifié -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.franchise') }}">Franchise</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.actualites') }}">Actualités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.conseils') }}">Conseils</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.contact_franchise') }}">Contact</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% if current_user.is_authenticated %}
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle me-1"></i> {{ current_user.name }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('equipment.my_reservations') }}">Mes réservations</a></li>
+                            {% if current_user.is_admin %}
+                            <li><a class="dropdown-item" href="#">Administration</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            {% endif %}
+                            <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Déconnexion</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                {% else %}
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-light btn-sm me-2" href="{{ url_for('auth.login') }}">
+                            <i class="fas fa-sign-in-alt me-1"></i> Connexion
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-light btn-sm" href="{{ url_for('auth.register') }}">
+                            <i class="fas fa-user-plus me-1"></i> Inscription
+                        </a>
+                    </li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-light mt-5 py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Wing4All {% if site %}{{ site.city }}{% endif %}</h3>
+                    <img src="{{ url_for('static', filename=LOGO_PATH) }}" alt="Logo Wing4All" width="30" height="30" class="mb-2">
+                    <p>Location de matériel de wingfoil</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Navigation</h3>
+                    <ul class="list-unstyled">
+                        {% if site %}
+                        <li><a href="{{ url_for('main.site_home', site_slug=site.slug) }}">Accueil</a></li>
+                        <li><a href="{{ url_for('main.formules', site_slug=site.slug) }}">Formules</a></li>
+                        <li><a href="{{ url_for('equipment.equipment_list', site_slug=site.slug) }}">Locations</a></li>
+                        <li><a href="{{ url_for('main.franchise') }}">Réseau Wing4All</a></li>
+                        {% else %}
+                        <li><a href="{{ url_for('main.franchise') }}">Franchise</a></li>
+                        <li><a href="{{ url_for('main.actualites') }}">Actualités</a></li>
+                        <li><a href="{{ url_for('main.conseils') }}">Conseils</a></li>
+                        <li><a href="{{ url_for('main.contact_franchise') }}">Contact</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope me-2"></i>{{ CONTACT_EMAIL }}</p>
+                    <p><i class="fas fa-phone me-2"></i>+33 6 52 58 38 62</p>
+                    <div class="social-links mt-3">
+                        <a href="https://mastodon.social/@wing4all" target="_blank" class="me-3" aria-label="Mastodon">
+                            <i class="fab fa-mastodon fa-2x"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61574779286290" target="_blank" class="me-3" aria-label="Facebook">
+                            <i class="fab fa-facebook fa-2x"></i>
+                        </a>
+                        <a href="https://www.instagram.com/wing4all/" target="_blank" class="me-3" aria-label="Instagram">
+                            <i class="fab fa-instagram fa-2x"></i>
+                        </a>
+                        <a href="https://maps.app.goo.gl/visSxXr1WAArVHLe8" target="_blank" class="me-3" aria-label="Localisation Google Maps">
+                            <i class="fas fa-map-marker-alt fa-2x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col text-center">
+                    <p>&copy; 2025 Wing4All. Tous droits réservés. <a href="{{ url_for('main.cgv') }}">CGV</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Preload des ressources critiques -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" as="style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/filters.js') }}" defer></script>
+    
+    {% block scripts %}{% endblock %}
+    
+    <!-- Schema.org markup pour une meilleure compréhension par les moteurs de recherche -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SportsActivityLocation",
+        "name": "Wing4All{% if site %} {{ site.city }}{% endif %}",
+        "description": "Location de matériel de wingfoil {% if site %}à {{ site.city }}{% else %}en France{% endif %}",
+        "url": "{{ request.url_root }}",
+        "image": "{{ url_for('static', filename=LOGO_PATH, _external=True) }}",
+        "address": {
+            "@type": "PostalAddress",
+            {% if site %}
+            "addressLocality": "{{ site.city }}",
+            "postalCode": "{{ site.postal_code }}",
+            "streetAddress": "{{ site.address }}",
+            {% endif %}
+            "addressCountry": "FR"
+        },
+        "offers": {
+            "@type": "Offer",
+            "description": "Location de matériel de wingfoil"
+        }
+    }
+    </script>
+</body>
+</html>

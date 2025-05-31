@@ -1,0 +1,87 @@
+{% extends "franchise/base_franchise.html" %}
+
+{% block title %}Contact{% endblock %}
+
+{% block meta_description %}Contactez-moi pour louer votre matériel de wingfoil. Moniteur FFV diplômé, je vous accompagne dans votre progression avec une approche pédagogique évoluée.{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="content-box p-4">
+        <div class="row justify-content-between align-items-start gy-4">
+            <!-- Colonne de gauche : Logo et coordonnées -->
+            <div class="col-lg-4 col-md-5 col-sm-12 mb-4 mb-md-0">
+                <div class="text-center text-md-start contact-left-column">
+                    <img src="{{ url_for('static', filename=LOGO_PATH) }}" alt="Wing4All Logo" class="img-fluid mb-4" style="max-width: 200px;">
+                    <div class="contact-info">
+                        <p class="mb-3">
+                            <i class="fas fa-phone me-2"></i>
+                            <a href="tel:+33652583862" class="text-decoration-none">+33 6 52 58 38 62</a>
+                        </p>
+                        <p class="mb-3">
+                            <i class="fas fa-envelope me-2"></i>
+                            <a href="mailto:{{ CONTACT_EMAIL }}" class="text-decoration-none">{{ CONTACT_EMAIL }}</a>
+                        </p>
+                    </div>
+                    <div class="social-links mt-4">
+                        <a href="https://www.facebook.com/profile.php?id=61574779286290" target="_blank" class="me-3 btn btn-outline-primary" aria-label="Facebook">
+                            <i class="fab fa-facebook me-1"></i> Facebook
+                        </a>
+                        <a href="https://maps.app.goo.gl/visSxXr1WAArVHLe8" target="_blank" class="btn btn-outline-success" aria-label="Localisation Google Maps">
+                            <i class="fas fa-map-marker-alt me-1"></i> Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colonne de droite : Présentation -->
+            <div class="col-lg-7 col-md-7 col-sm-12">
+                <div class="card border-0" style="background-color: rgba(248, 249, 250, 0.6);">
+                    <div class="card-body">
+                        <h1 class="h4 mb-4">Me Contacter</h1>
+                        <p class="mb-4">
+                            Moniteur de voile diplômé FFV, je suis passionné par la transmission et l'enseignement des sports de glisse. 
+                        </p>
+
+                        <p class="mb-4">
+                            Mon objectif est de vous proposer des locations au prix le plus bas possible, 
+                            pour que vous puissiez vous faire plaisir sans prise de tête. N'hésitez pas à me contacter 
+                            pour toute question sur le matériel ou les conditions de pratique.
+                        </p>
+
+                        <!--p class="mb-4">
+                            Moniteur de voile diplômé FFV, je suis passionné par la transmission et l'enseignement des sports de glisse. 
+                            Mon parcours académique dans la théorie de l'apprentissage m'a permis de développer une approche pédagogique unique, 
+                            optimisant la courbe d'apprentissage dès vos premiers bords.
+                        </p>
+                        
+                        <p class="mb-4">
+                            Cette double compétence me permet d'adapter mes conseils à chaque pratiquant, 
+                            débutant ou confirmé, pour une progression douce, mais efficace.
+                        </p>
+
+                        <p class="mb-4">
+                            Mon objectif est de vous proposer des locations au prix le plus bas possible, 
+                            pour que vous puissiez vous faire plaisir sans prise de tête. N'hésitez pas à me contacter 
+                            pour toute question sur le matériel ou les conditions de pratique.
+                        </p-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .contact-left-column, .contact-left-column a, .contact-left-column p {
+        color: #004080 !important; /* Bleu plus foncé pour une meilleure lisibilité */
+    }
+    
+    .contact-left-column i {
+        color: #004080 !important;
+    }
+    
+    .social-links .btn {
+        font-weight: 600;
+    }
+</style>
+{% endblock %}

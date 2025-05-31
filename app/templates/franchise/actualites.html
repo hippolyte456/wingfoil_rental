@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "franchise/base_franchise.html" %}
 
 {% block title %}Actualités{% endblock %}
 
@@ -68,7 +68,7 @@
             <div class="card-body text-center p-4">
                 <h3 class="h5 mb-3">Restez informé de nos dernières actualités</h3>
                 <p class="mb-3">Inscrivez-vous à notre newsletter pour recevoir les dernières nouveautés, conseils et promotions.</p>
-                <a href="{{ url_for('main.contact') }}" class="btn btn-primary">
+                <a href="{{ url_for('main.contact_franchise') }}" class="btn btn-primary">
                     <i class="fas fa-envelope me-2"></i>S'inscrire à la newsletter
                 </a>
             </div>

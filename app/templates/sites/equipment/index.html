@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "sites/base.html" %}
 
 {% block title %}Location Matériel Wingfoil{% endblock %}
 
@@ -64,7 +64,11 @@
                         </p> -->
                     </div>
                     <div class="card-footer text-center">
-                        <a href="{{ url_for('equipment.equipment_detail', id=item.id) }}" class="btn btn-primary">Voir détails</a>
+                        {% if site %}
+                            <a href="{{ url_for('equipment.equipment_detail', id=item.id, site_slug=site.slug) }}" class="btn btn-primary">Voir détails</a>
+                        {% else %}
+                            <a href="{{ url_for('equipment.equipment_detail_all', id=item.id) }}" class="btn btn-primary">Voir détails</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -72,4 +76,4 @@
         </div>
     </div>
 </div>
-{% endblock %} 
+{% endblock %}

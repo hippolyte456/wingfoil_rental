@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{% block meta_description %}Location de matériel de wingfoil en France. Découvrez mes formules de location, conseils et équipements de qualité pour votre pratique du wingfoil.{% endblock %}">
-    <meta name="keywords" content="{% block meta_keywords %}wingfoil, location wingfoil, wing foil, location wing, cours wingfoil{% endblock %}">
+    <meta name="description" content="{% block meta_description %}Wing4All - Réseau de locations de wingfoil en France. Découvrez nos différents sites et partenaires pour pratiquer le wingfoil.{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}wingfoil, réseau wingfoil, location wing, franchise wingfoil{% endblock %}">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Wing4All - {% block og_title %}{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}Location de matériel de wingfoil en France{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Réseau national de location de wingfoil en France{% endblock %}">
     <meta property="og:image" content="{{ url_for('static', filename=LOGO_PATH, _external=True) }}">
     <meta property="og:url" content="{{ request.url }}">
     <link rel="canonical" href="{{ request.url }}" />
-    <title>Wing4All - {% block title %}{% endblock %} | Location de Wingfoil</title>
+    <title>Wing4All - {% block title %}{% endblock %} | Réseau de Location de Wingfoil</title>
     <!-- Preload des ressources critiques -->
     <link rel="preload" href="{{ url_for('static', filename=LOGO_PATH) }}" as="image" type="image/png">
     <!-- Favicon -->
@@ -34,7 +34,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main.home') }}">
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main.franchise') }}">
                 <img src="{{ url_for('static', filename=LOGO_PATH) }}" alt="Logo" width="100" height="100" class="d-inline-block align-text-top me-2">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -42,29 +42,21 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                 <ul class="navbar-nav me-auto">
+                    <!-- Menu du site parent (franchise) -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.home') }}">Accueil</a>
+                        <a class="nav-link" href="{{ url_for('main.franchise') }}"> Accueil </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.formules') }}">Formules</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.conseils') }}">Conseils</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('equipment.equipment_list') }}">Locations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.events') }}">Events</a>
+                        <a class="nav-link" href="{{ url_for('main.reseau') }}">Réseau</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('main.actualites') }}">Actualités</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.planning') }}">Planning</a>
+                        <a class="nav-link" href="{{ url_for('main.conseils') }}">Conseils</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.contact') }}">Contact</a>
+                        <a class="nav-link" href="{{ url_for('main.contact_franchise') }}">Contact</a>
                     </li>
                     {% if current_user.is_authenticated %}
                     <li class="nav-item">
@@ -72,8 +64,8 @@
                     </li>
                     {% endif %}
                 </ul>
-                <!--ul class="navbar-nav ms-auto">
-                    {% if current_user.is_authenticated %}
+                {% if current_user.is_authenticated %}
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user-circle me-1"></i> {{ current_user.name }}
@@ -87,7 +79,9 @@
                             <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Déconnexion</a></li>
                         </ul>
                     </li>
-                    {% else %}
+                </ul>
+                {% else %}
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-light btn-sm me-2" href="{{ url_for('auth.login') }}">
                             <i class="fas fa-sign-in-alt me-1"></i> Connexion
@@ -98,8 +92,8 @@
                             <i class="fas fa-user-plus me-1"></i> Inscription
                         </a>
                     </li>
-                    {% endif %}
-                </ul-->
+                </ul>
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -122,15 +116,16 @@
                 <div class="col-md-4">
                     <h3>Wing4All</h3>
                     <img src="{{ url_for('static', filename=LOGO_PATH) }}" alt="Logo Wing4All" width="30" height="30" class="mb-2">
-                    <p>Location de matériel de wingfoil</p>
+                    <p>Réseau de location de wingfoil en France</p>
                 </div>
                 <div class="col-md-4">
                     <h3>Navigation</h3>
                     <ul class="list-unstyled">
-                        <li><a href="{{ url_for('main.home') }}">Accueil</a></li>
-                        <li><a href="{{ url_for('main.formules') }}">Formules</a></li>
+                        <li><a href="{{ url_for('main.franchise') }}">Franchise</a></li>
+                        <li><a href="{{ url_for('main.reseau') }}">Réseau</a></li>
+                        <li><a href="{{ url_for('main.actualites') }}">Actualités</a></li>
                         <li><a href="{{ url_for('main.conseils') }}">Conseils</a></li>
-                        <li><a href="{{ url_for('equipment.equipment_list') }}">Locations</a></li>
+                        <li><a href="{{ url_for('main.contact_franchise') }}">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -174,18 +169,14 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "SportsActivityLocation",
+        "@type": "Organization",
         "name": "Wing4All",
-        "description": "Location de matériel de wingfoil en France",
+        "description": "Réseau de locations de wingfoil en France",
         "url": "{{ request.url_root }}",
         "image": "{{ url_for('static', filename=LOGO_PATH, _external=True) }}",
         "address": {
             "@type": "PostalAddress",
             "addressCountry": "FR"
-        },
-        "offers": {
-            "@type": "Offer",
-            "description": "Location de matériel de wingfoil"
         }
     }
     </script>

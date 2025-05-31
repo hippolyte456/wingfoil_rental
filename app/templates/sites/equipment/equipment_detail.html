@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "sites/base.html" %}
 
 {% block title %}{{ equipment.name }}{% endblock %}
 
@@ -46,7 +46,11 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Réserver cet équipement</h5>
-                    <form action="{{ url_for('equipment.make_reservation', equipment_id=equipment.id) }}" method="POST">
+                    {% if site %}
+                    <form action="{{ url_for('equipment.make_reservation', equipment_id=equipment.id, site_slug=site.slug) }}" method="POST">
+                    {% else %}
+                    <form action="{{ url_for('equipment.make_reservation_all', equipment_id=equipment.id) }}" method="POST">
+                    {% endif %}
                         <div class="mb-3">
                             <label for="start_date" class="form-label">Date de début</label>
                             <input type="date" class="form-control" id="start_date" name="start_date" required>
@@ -70,4 +74,4 @@
         </div>
     </div>
 </div>
-{% endblock %} 
+{% endblock %}

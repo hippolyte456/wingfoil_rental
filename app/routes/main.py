@@ -10,11 +10,24 @@ import json
 
 bp = Blueprint('main', __name__)
 
+# Routes du site parent (franchise)
 @bp.route('/')
 def franchise():
     meta_tags = generate_meta_tags(
         title="Wing4All - Réseau de location de Wingfoil en France",
         description="Découvrez le réseau Wing4All de location de matériel de wingfoil en France. Plusieurs sites pour vous accompagner dans votre pratique du wingfoil."
+    )
+    structured_data = generate_structured_data("Organization", {})
+    
+    return render_template('franchise/home_franchise.html', 
+                          meta_tags=meta_tags, 
+                          structured_data=structured_data)
+
+@bp.route('/reseau')
+def reseau():
+    meta_tags = generate_meta_tags(
+        title="Notre réseau d'écoles de wingfoil - Wing4All",
+        description="Découvrez tous nos points de location de matériel de wingfoil en France. Plusieurs sites idéalement situés pour votre pratique du wingfoil."
     )
     structured_data = generate_structured_data("Organization", {})
     
@@ -42,7 +55,7 @@ def franchise():
     for site in valid_sites:
         print(f"DEBUG - Site: {site.name}, Lat: {site.latitude}, Lng: {site.longitude}")
         
-    return render_template('franchise.html', 
+    return render_template('franchise/reseau.html', 
                           meta_tags=meta_tags, 
                           structured_data=structured_data,
                           sites=sites,
@@ -53,6 +66,28 @@ def franchise():
 def home():
     return redirect(url_for('main.franchise'))
 
+@bp.route('/actualites')
+def actualites():
+    meta_tags = generate_meta_tags(
+        title="Actualités Wing4All",
+        description="Suivez toutes les actualités de Wing4All : événements, nouveautés, promotions et informations sur la location de matériel de wingfoil."
+    )
+    # Récupérer les articles triés du plus récent au plus ancien
+    articles = get_sorted_articles(reverse=True)
+    return render_template('franchise/actualites.html', 
+                          meta_tags=meta_tags, 
+                          articles=articles)
+
+@bp.route('/conseils')
+def conseils():
+    meta_tags = generate_meta_tags(
+        title="Conseils Wingfoil",
+        description="Conseils et astuces pour la pratique du wingfoil. Apprenez avec nos moniteurs FFV diplômés qui optimisent votre courbe d'apprentissage."
+    )
+    return render_template('franchise/conseils.html', 
+                          meta_tags=meta_tags)
+
+# Routes des sites enfants
 @bp.route('/site/<site_slug>')
 def site_home(site_slug):
     # Récupérer le site correspondant au slug
@@ -63,37 +98,117 @@ def site_home(site_slug):
         description=f"Location de matériel de wingfoil à {site.city}. Wings, foils et planches de qualité pour tous les niveaux. Conseils et accompagnement personnalisé."
     )
     structured_data = generate_structured_data("LocalBusiness", {})
-    return render_template('home.html', meta_tags=meta_tags, structured_data=structured_data, site=site)
+    return render_template('sites/home.html', 
+                           meta_tags=meta_tags, 
+                           structured_data=structured_data, 
+                           site=site)
 
-@bp.route('/conseils')
-def conseils():
+@bp.route('/site/<site_slug>/formules')
+def formules(site_slug=None):
+    site = None
+    if site_slug:
+        site = Site.query.filter_by(slug=site_slug).first_or_404()
+        city_name = site.city
+    else:
+        city_name = "nos sites"
+    
     meta_tags = generate_meta_tags(
-        title="Conseils Wingfoil",
-        description="Conseils et astuces pour la pratique du wingfoil à Saint-Malo. Apprenez avec un moniteur FFV diplômé qui optimise votre courbe d'apprentissage."
+        title=f"Formules Location Wingfoil",
+        description=f"Découvrez nos formules de location de matériel wingfoil à {city_name}. Prix attractifs et matériel de qualité pour tous les niveaux."
     )
-    return render_template('conseils.html', meta_tags=meta_tags)
+    return render_template('sites/formules.html', meta_tags=meta_tags, site=site)
 
-@bp.route('/contact', methods=['GET', 'POST'])
-def contact():
+@bp.route('/site/<site_slug>/events')
+def events(site_slug=None):
+    site = None
+    if site_slug:
+        site = Site.query.filter_by(slug=site_slug).first_or_404()
+        city_name = site.city
+    else:
+        city_name = "nos sites"
+    
     meta_tags = generate_meta_tags(
-        title="Contact - Wing4All",
-        description="Contactez-moi pour louer votre matériel de wingfoil à Saint-Malo. Moniteur FFV diplômé, je vous accompagne dans votre progression."
+        title=f"Événements Wingfoil - Wing4All {city_name}",
+        description=f"Découvrez les événements wingfoil organisés à {city_name}. Initiations, compétitions et rencontres autour de la pratique du wingfoil."
     )
+    # Récupérer les prochains événements
+    now = datetime.now()
+    
+    # ⚠️ Modification: Ne pas filtrer par site_id pour l'instant, car cette colonne n'existe pas dans la base
+    # Nous récupérons tous les événements et filtrons manuellement après si nécessaire
+    upcoming_events = CalendarEvent.query.filter(
+        CalendarEvent.start_time >= now,
+        CalendarEvent.event_type == 'event'
+    ).order_by(CalendarEvent.start_time).limit(30).all()
+    
+    # Si un site est spécifié, on pourrait filtrer manuellement les événements ici ultérieurement
+    # Pour l'instant, on affiche tous les événements pour chaque site
+    
+    return render_template('sites/events.html', meta_tags=meta_tags, events=upcoming_events, site=site)
+
+@bp.route('/site/<site_slug>/planning')
+def planning(site_slug=None):
+    site = None
+    if site_slug:
+        site = Site.query.filter_by(slug=site_slug).first_or_404()
+        city_name = site.city
+    else:
+        city_name = "nos sites"
+    
+    meta_tags = generate_meta_tags(
+        title=f"Planning et Disponibilités - {city_name}",
+        description=f"Consultez le planning des disponibilités de location de matériel wingfoil à {city_name}. Réservez votre créneau pour profiter du wingfoil dans les meilleures conditions."
+    )
+    return render_template('sites/planning.html', meta_tags=meta_tags, site=site)
+
+@bp.route('/site/<site_slug>/contact', methods=['GET', 'POST'])
+def contact(site_slug=None):
+    site = None
+    if site_slug:
+        site = Site.query.filter_by(slug=site_slug).first_or_404()
+        city_name = site.city
+    else:
+        # Pour la route globale
+        city_name = "notre réseau"
+    
+    meta_tags = generate_meta_tags(
+        title=f"Contact - Wing4All {city_name}",
+        description=f"Contactez-nous pour louer votre matériel de wingfoil à {city_name}. Moniteurs FFV diplômés, nous vous accompagnons dans votre progression."
+    )
+    
     if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
         message = request.form.get('message')
         flash('Votre message a été envoyé avec succès!', 'success')
-        return redirect(url_for('main.contact'))
-    return render_template('contact.html', meta_tags=meta_tags)
+        
+        if site:
+            return redirect(url_for('main.contact', site_slug=site_slug))
+        else:
+            return redirect(url_for('main.contact_franchise'))
+    
+    # Passer le template approprié selon le contexte
+    if site:
+        return render_template('sites/contact.html', meta_tags=meta_tags, site=site)
+    else:
+        return render_template('franchise/contact.html', meta_tags=meta_tags)
 
-@bp.route('/formules')
-def formules():
+@bp.route('/contact', methods=['GET', 'POST'])
+def contact_franchise():
+    # Implémentation spécifique pour la route globale sans site_slug
     meta_tags = generate_meta_tags(
-        title="Formules Location Wingfoil",
-        description="Découvrez nos formules de location de matériel wingfoil à Saint-Malo. Prix attractifs et matériel de qualité pour tous les niveaux."
+        title="Contact - Wing4All",
+        description="Contactez-nous pour en savoir plus sur notre réseau de location de matériel de wingfoil en France. Nous sommes à votre écoute pour répondre à toutes vos questions."
     )
-    return render_template('formules.html', meta_tags=meta_tags)
+    
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+        flash('Votre message a été envoyé avec succès!', 'success')
+        return redirect(url_for('main.contact_franchise'))
+    
+    return render_template('franchise/contact.html', meta_tags=meta_tags)
 
 @bp.route('/cgv')
 def cgv():
@@ -101,7 +216,7 @@ def cgv():
         title="Conditions Générales de Vente",
         description="Consultez les conditions générales de vente pour la location de matériel de wingfoil chez Wing4All."
     )
-    return render_template('cgv.html', meta_tags=meta_tags)
+    return render_template('franchise/cgv.html', meta_tags=meta_tags)
 
 @bp.route('/guide-debutant')
 def beginner_guide():
@@ -109,40 +224,7 @@ def beginner_guide():
         title="Guide du Débutant en Wingfoil",
         description="Guide étape par étape pour apprendre le wingfoil : sécurité, théorie du vent, maniement de l'aile, premiers bords, empennage, vol et jibe."
     )
-    return render_template('beginner_guide.html', meta_tags=meta_tags)
-
-@bp.route('/actualites')
-def actualites():
-    meta_tags = generate_meta_tags(
-        title="Actualités Wing4All",
-        description="Suivez toutes les actualités de Wing4All : événements, nouveautés, promotions et informations sur la location de matériel de wingfoil."
-    )
-    # Récupérer les articles triés du plus récent au plus ancien
-    articles = get_sorted_articles(reverse=True)
-    return render_template('actualites.html', meta_tags=meta_tags, articles=articles)
-
-@bp.route('/planning')
-def planning():
-    meta_tags = generate_meta_tags(
-        title="Planning et Disponibilités",
-        description="Consultez le planning des disponibilités de location de matériel wingfoil. Réservez votre créneau pour profiter du wingfoil dans les meilleures conditions."
-    )
-    return render_template('planning.html', meta_tags=meta_tags)
-
-@bp.route('/events')
-def events():
-    meta_tags = generate_meta_tags(
-        title="Événements Wingfoil - Wing4All",
-        description="Découvrez les événements wingfoil organisés à Saint-Malo. Initiations, compétitions et rencontres autour de la pratique du wingfoil."
-    )
-    # Récupérer les prochains événements
-    now = datetime.now()
-    upcoming_events = CalendarEvent.query.filter(
-        CalendarEvent.start_time >= now,
-        CalendarEvent.event_type == 'event'
-    ).order_by(CalendarEvent.start_time).limit(10).all()
-    
-    return render_template('events.html', meta_tags=meta_tags, events=upcoming_events)
+    return render_template('franchise/beginner_guide.html', meta_tags=meta_tags)
 
 @bp.route('/articles-conseils/<article_name>')
 def article_conseils(article_name):
@@ -158,8 +240,10 @@ def article_conseils(article_name):
     meta_tags = generate_meta_tags(title=article.title, description=article.description)
     
     try:
-        # Essayer de rendre le template approprié
-        return render_template(f'articles_conseils/{article_name}.html', meta_tags=meta_tags, article=article)
+        # Essayer de rendre le template approprié avec le template parent franchise
+        return render_template(f'articles_conseils/{article_name}.html', 
+                              meta_tags=meta_tags, 
+                              article=article)
     except:
         # Si le template n'existe pas, rediriger vers la page d'actualités
         flash("L'article demandé n'existe pas.", "warning")

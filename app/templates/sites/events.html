@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'sites/base.html' %}
 
 {% block title %}Organisation d'Événements - Wing4All{% endblock %}
 
@@ -92,42 +92,74 @@
                     </div-->
                     
                     <div class="text-center mt-4">
-                        <a href="{{ url_for('main.contact') }}" class="btn btn-primary btn-lg px-5">Demander un devis</a>
+                        <a href="{{ url_for('main.contact', site_slug=site.slug) }}" class="btn btn-primary btn-lg px-5">Demander un devis</a>
                     </div>
                 </div>
             </div>
-            
-            <!--div class="row mt-5">
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100 shadow">
-                        <div class="card-body">
-                            <h3>Pourquoi choisir notre formule événementielle ?</h3>
-                            <p>Notre combinaison unique wingfoil + navigation légère offre une expérience complète qui allie:</p>
-                            <ul>
-                                <li>Dépassement de soi avec le wingfoil</li>
-                                <li>Esprit d'équipe avec le catamaran</li>
-                                <li>Découverte d'un sport en plein essor</li>
-                                <li>Cadre exceptionnel de la baie de Saint-Malo</li>
-                                <li>Accompagnement par des professionnels passionnés</li>
-                            </ul>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="mb-4">Événements à venir</h2>
+                    
+                    {% if events %}
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                            {% for event in events %}
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="card-header bg-primary text-white">
+                                        {{ event.start_time.strftime('%d/%m/%Y') }}
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ event.title }}</h5>
+                                        <p class="card-text">{{ event.description }}</p>
+                                        <p class="text-muted">
+                                            <i class="fas fa-clock me-2"></i>
+                                            {{ event.start_time.strftime('%H:%M') }} - {{ event.end_time.strftime('%H:%M') }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
                         </div>
-                    </div>
+                    {% else %}
+                        <div class="alert alert-info">
+                            <p>Aucun événement n'est prévu pour le moment. Revenez bientôt ou contactez-nous pour organiser votre propre événement !</p>
+                        </div>
+                    {% endif %}
+
+                    <!--div class="row mt-5">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 shadow">
+                                <div class="card-body">
+                                    <h3>Pourquoi choisir notre formule événementielle ?</h3>
+                                    <p>Notre combinaison unique wingfoil + navigation légère offre une expérience complète qui allie:</p>
+                                    <ul>
+                                        <li>Dépassement de soi avec le wingfoil</li>
+                                        <li>Esprit d'équipe avec le catamaran</li>
+                                        <li>Découverte d'un sport en plein essor</li>
+                                        <li>Cadre exceptionnel de la baie de Saint-Malo</li>
+                                        <li>Accompagnement par des professionnels passionnés</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 shadow">
+                                <div class="card-body">
+                                    <h3>Témoignages</h3>
+                                    <div class="mb-3">
+                                        <p class="fst-italic">"Une journée parfaite pour notre team-building annuel. L'équipe a adoré découvrir le wingfoil et la sortie en catamaran a créé une véritable cohésion!"</p>
+                                        <p class="text-end fw-bold">— Marie D., Responsable RH</p>
+                                    </div>
+                                    <div>
+                                        <p class="fst-italic">"Organisation impeccable et prestations de qualité. Merci pour cette journée qui restera dans nos mémoires!"</p>
+                                        <p class="text-end fw-bold">— Thomas L., Chef d'entreprise</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div-->
                 </div>
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100 shadow">
-                        <div class="card-body">
-                            <h3>Témoignages</h3>
-                            <div class="mb-3">
-                                <p class="fst-italic">"Une journée parfaite pour notre team-building annuel. L'équipe a adoré découvrir le wingfoil et la sortie en catamaran a créé une véritable cohésion!"</p>
-                                <p class="text-end fw-bold">— Marie D., Responsable RH</p>
-                            </div>
-                            <div>
-                                <p class="fst-italic">"Organisation impeccable et prestations de qualité. Merci pour cette journée qui restera dans nos mémoires!"</p>
-                                <p class="text-end fw-bold">— Thomas L., Chef d'entreprise</p>
-                            </div>
-                        </div>
-                    </div>
-                </div-->
             </div>
         </div>
     </div>
@@ -145,32 +177,32 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 10px;
-    width: 2px;
+    left: 20px;
+    width: 4px;
+    margin-left: -2px;
     background-color: #e9ecef;
 }
 
 .timeline-item {
     position: relative;
-    padding-left: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+    margin-left: 40px;
 }
 
 .timeline-marker {
     position: absolute;
     top: 6px;
-    left: 0;
-    width: 20px;
-    height: 20px;
+    left: -40px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
-    background-color: #007bff;
-    border: 3px solid #ffffff;
-    box-shadow: 0 0 0 2px #007bff;
+    background-color: var(--bs-primary);
+    border: 2px solid white;
 }
 
 .timeline-content h4 {
-    margin-bottom: 5px;
-    color: #007bff;
+    margin-bottom: 10px;
+    font-weight: 600;
 }
 </style>
 {% endblock %}
