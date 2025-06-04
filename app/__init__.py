@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from config import config
+import os
 
 db = SQLAlchemy()
 login_manager = LoginManager()
@@ -41,6 +42,14 @@ def create_app(config_name='development'):
             "LOGO_PATH": app.config.get('LOGO_PATH', 'img/logo/logo_wingfoil-rm-bg.png'),
             "CONTACT_EMAIL": app.config.get('CONTACT_EMAIL', 'contact@wing4all.fr')
         }
+    
+    # Helper function to check if a file exists in static folder
+    @app.context_processor
+    def utility_processor():
+        def file_exists(file_path):
+            full_path = os.path.join(app.static_folder, file_path)
+            return os.path.exists(full_path)
+        return dict(file_exists=file_exists)
     
     with app.app_context():
         db.create_all()
