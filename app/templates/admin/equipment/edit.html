@@ -1,0 +1,78 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %}Modifier l'équipement{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Modifier l'équipement "{{ equipment.name }}"</h1>
+    
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Informations de l'équipement</h6>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('admin.equipment_edit', equipment_id=equipment.id) }}">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Nom de l'équipement <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ equipment.name }}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="type" class="form-label">Type <span class="text-danger">*</span></label>
+                        <select class="form-control" id="type" name="type" required>
+                            <option value="">Sélectionnez un type</option>
+                            <option value="wing" {% if equipment.type == 'wing' %}selected{% endif %}>Wing</option>
+                            <option value="board" {% if equipment.type == 'board' %}selected{% endif %}>Planche</option>
+                            <option value="foil" {% if equipment.type == 'foil' %}selected{% endif %}>Foil</option>
+                            <option value="set" {% if equipment.type == 'set' %}selected{% endif %}>Set complet</option>
+                            <option value="accessory" {% if equipment.type == 'accessory' %}selected{% endif %}>Accessoire</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3">{{ equipment.description }}</textarea>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="size" class="form-label">Taille</label>
+                        <input type="text" class="form-control" id="size" name="size" value="{{ equipment.size }}" placeholder="Ex: 5.0m², 90L, 1500cm²...">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="price_per_day" class="form-label">Prix par jour (€) <span class="text-danger">*</span></label>
+                        <input type="number" step="0.01" min="0" class="form-control" id="price_per_day" name="price_per_day" value="{{ equipment.price_per_day }}" required>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="image_url" class="form-label">URL de l'image</label>
+                    <input type="text" class="form-control" id="image_url" name="image_url" value="{{ equipment.image_url }}" placeholder="img/equipment/nom-image.jpg">
+                    <small class="text-muted">Chemin relatif à partir du dossier static</small>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="site_id" class="form-label">Site <span class="text-danger">*</span></label>
+                    <select class="form-control" id="site_id" name="site_id" required>
+                        <option value="">Sélectionnez un site</option>
+                        {% for site in sites %}
+                        <option value="{{ site.id }}" {% if equipment.site_id == site.id %}selected{% endif %}>{{ site.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="available" name="available" {% if equipment.available %}checked{% endif %}>
+                    <label class="form-check-label" for="available">Disponible à la location</label>
+                </div>
+                
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                    <a href="{{ url_for('admin.equipment_list') }}" class="btn btn-secondary">Annuler</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

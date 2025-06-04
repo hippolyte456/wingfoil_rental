@@ -1,0 +1,82 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %}Modifier le site{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Modifier le site "{{ site.name }}"</h1>
+    
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Informations du site</h6>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('admin.site_edit', site_id=site.id) }}">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Nom du site <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ site.name }}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="slug" class="form-label">Slug <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="slug" name="slug" value="{{ site.slug }}" required>
+                        <small class="text-muted">Identifiant unique pour les URLs (ex: saint-malo)</small>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3">{{ site.description }}</textarea>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="address" class="form-label">Adresse</label>
+                        <input type="text" class="form-control" id="address" name="address" value="{{ site.address }}">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="postal_code" class="form-label">Code postal</label>
+                        <input type="text" class="form-control" id="postal_code" name="postal_code" value="{{ site.postal_code }}">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="city" class="form-label">Ville</label>
+                        <input type="text" class="form-control" id="city" name="city" value="{{ site.city }}">
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="latitude" class="form-label">Latitude</label>
+                        <input type="text" class="form-control" id="latitude" name="latitude" value="{{ site.latitude }}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="longitude" class="form-label">Longitude</label>
+                        <input type="text" class="form-control" id="longitude" name="longitude" value="{{ site.longitude }}">
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="phone" class="form-label">Téléphone</label>
+                        <input type="text" class="form-control" id="phone" name="phone" value="{{ site.phone }}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ site.email }}">
+                    </div>
+                </div>
+                
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="is_active" name="is_active" {% if site.is_active %}checked{% endif %}>
+                    <label class="form-check-label" for="is_active">Site actif</label>
+                </div>
+                
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                    <a href="{{ url_for('admin.sites_list') }}" class="btn btn-secondary">Annuler</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

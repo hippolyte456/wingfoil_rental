@@ -1,0 +1,110 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %}Gestion des Réservations{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Gestion des Réservations</h1>
+    
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Liste des Réservations</h6>
+            <a href="{{ url_for('admin.reservation_create') }}" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus fa-sm"></i> Ajouter une réservation
+            </a>
+        </div>
+        <div class="card-body">
+            {% if reservations %}
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Client</th>
+                            <th>Équipement</th>
+                            <th>Date début</th>
+                            <th>Date fin</th>
+                            <th>Prix total</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reservation in reservations %}
+                        <tr>
+                            <td>{{ reservation.id }}</td>
+                            <td>{{ reservation.user.name }}</td>
+                            <td>{{ reservation.equipment.name }}</td>
+                            <td>{{ reservation.start_date.strftime('%d-%m-%Y') }}</td>
+                            <td>{{ reservation.end_date.strftime('%d-%m-%Y') }}</td>
+                            <td>{{ reservation.total_price }} €</td>
+                            <td>
+                                {% if reservation.status == 'pending' %}
+                                <span class="badge bg-warning">En attente</span>
+                                {% elif reservation.status == 'confirmed' %}
+                                <span class="badge bg-success">Confirmée</span>
+                                {% elif reservation.status == 'canceled' %}
+                                <span class="badge bg-danger">Annulée</span>
+                                {% else %}
+                                <span class="badge bg-secondary">{{ reservation.status }}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="{{ url_for('admin.reservation_edit', reservation_id=reservation.id) }}" class="btn btn-info btn-sm">
+                                        <i class="fas fa-edit"></i> Modifier
+                                    </a>
+                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ reservation.id }}">
+                                        <i class="fas fa-trash"></i> Supprimer
+                                    </button>
+                                    
+                                    <!-- Modal de confirmation de suppression -->
+                                    <div class="modal fade" id="deleteModal{{ reservation.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ reservation.id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel{{ reservation.id }}">Confirmation de suppression</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Êtes-vous sûr de vouloir supprimer la réservation n°{{ reservation.id }} ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                                    <form action="{{ url_for('admin.reservation_delete', reservation_id=reservation.id) }}" method="POST">
+                                                        <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                Aucune réservation n'a été effectuée pour le moment. <a href="{{ url_for('admin.reservation_create') }}">Créer votre première réservation</a>.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialisation de DataTables pour faciliter la recherche et la pagination
+        $('#dataTable').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/French.json'
+            },
+            order: [[3, 'desc']] // Tri par date de début par défaut (plus récentes d'abord)
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %}Modifier la réservation{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Modifier la réservation n°{{ reservation.id }}</h1>
+    
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Informations de la réservation</h6>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('admin.reservation_edit', reservation_id=reservation.id) }}">
+                <div class="mb-3">
+                    <label for="user_id" class="form-label">Client <span class="text-danger">*</span></label>
+                    <select class="form-control" id="user_id" name="user_id" required>
+                        <option value="">Sélectionnez un client</option>
+                        {% for user in users %}
+                        <option value="{{ user.id }}" {% if user.id == reservation.user_id %}selected{% endif %}>
+                            {{ user.name }} ({{ user.email }})
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="equipment_id" class="form-label">Équipement <span class="text-danger">*</span></label>
+                    <select class="form-control" id="equipment_id" name="equipment_id" required>
+                        <option value="">Sélectionnez un équipement</option>
+                        {% for item in equipment %}
+                        <option value="{{ item.id }}" data-price="{{ item.price_per_day }}" {% if item.id == reservation.equipment_id %}selected{% endif %}>
+                            {{ item.name }} ({{ item.type }}, {{ item.size }}) - {{ item.site.name if item.site else 'N/A' }} - {{ item.price_per_day }}€/jour
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="start_date" class="form-label">Date de début <span class="text-danger">*</span></label>
+                        <input type="date" class="form-control" id="start_date" name="start_date" value="{{ reservation.start_date.strftime('%Y-%m-%d') }}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="end_date" class="form-label">Date de fin <span class="text-danger">*</span></label>
+                        <input type="date" class="form-control" id="end_date" name="end_date" value="{{ reservation.end_date.strftime('%Y-%m-%d') }}" required>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="total_price" class="form-label">Prix total (€) <span class="text-danger">*</span></label>
+                    <input type="number" step="0.01" min="0" class="form-control" id="total_price" name="total_price" value="{{ reservation.total_price }}" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="status" class="form-label">Statut <span class="text-danger">*</span></label>
+                    <select class="form-control" id="status" name="status" required>
+                        <option value="pending" {% if reservation.status == 'pending' %}selected{% endif %}>En attente</option>
+                        <option value="confirmed" {% if reservation.status == 'confirmed' %}selected{% endif %}>Confirmée</option>
+                        <option value="canceled" {% if reservation.status == 'canceled' %}selected{% endif %}>Annulée</option>
+                        <option value="completed" {% if reservation.status == 'completed' %}selected{% endif %}>Terminée</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                    <a href="{{ url_for('admin.reservations_list') }}" class="btn btn-secondary">Annuler</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fonction pour calculer le prix total
+        function calculerPrixTotal() {
+            const equipmentSelect = document.getElementById('equipment_id');
+            const startDateInput = document.getElementById('start_date');
+            const endDateInput = document.getElementById('end_date');
+            const totalPriceInput = document.getElementById('total_price');
+            
+            if (equipmentSelect.selectedIndex > 0 && startDateInput.value && endDateInput.value) {
+                const selectedOption = equipmentSelect.options[equipmentSelect.selectedIndex];
+                const pricePerDay = parseFloat(selectedOption.getAttribute('data-price'));
+                
+                const startDate = new Date(startDateInput.value);
+                const endDate = new Date(endDateInput.value);
+                
+                // Calculer la différence en jours
+                const diffTime = Math.abs(endDate - startDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // +1 pour inclure le jour de début
+                
+                if (diffDays > 0) {
+                    const totalPrice = pricePerDay * diffDays;
+                    totalPriceInput.value = totalPrice.toFixed(2);
+                }
+            }
+        }
+        
+        // Écouter les changements sur les champs qui affectent le prix
+        document.getElementById('equipment_id').addEventListener('change', calculerPrixTotal);
+        document.getElementById('start_date').addEventListener('change', calculerPrixTotal);
+        document.getElementById('end_date').addEventListener('change', calculerPrixTotal);
+    });
+</script>
+{% endblock %}
