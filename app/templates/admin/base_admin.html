@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wing4All Admin - {% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1">
+    <style>
+        .admin-sidebar {
+            min-height: calc(100vh - 56px);
+            background-color: #343a40;
+        }
+        .admin-sidebar .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.75rem 1rem;
+        }
+        .admin-sidebar .nav-link:hover {
+            color: #fff;
+        }
+        .admin-sidebar .nav-link.active {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .admin-content {
+            padding: 20px;
+        }
+        .stat-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('admin.dashboard') }}">
+                <img src="{{ url_for('static', filename=LOGO_PATH) }}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
+                Wing4All Admin
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.franchise') }}" target="_blank">Voir le site</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle me-1"></i> {{ current_user.name }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Déconnexion</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 col-lg-2 d-md-block admin-sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.endpoint == 'admin.dashboard' %}active{% endif %}" href="{{ url_for('admin.dashboard') }}">
+                                <i class="fas fa-tachometer-alt me-2"></i>Tableau de bord
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if 'admin.users' in request.endpoint %}active{% endif %}" href="{{ url_for('admin.users_list') }}">
+                                <i class="fas fa-users me-2"></i>Utilisateurs
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if 'admin.sites' in request.endpoint %}active{% endif %}" href="{{ url_for('admin.sites_list') }}">
+                                <i class="fas fa-map-marked-alt me-2"></i>Sites
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if 'admin.equipment' in request.endpoint %}active{% endif %}" href="{{ url_for('admin.equipment_list') }}">
+                                <i class="fas fa-wind me-2"></i>Équipements
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if 'admin.reservations' in request.endpoint %}active{% endif %}" href="{{ url_for('admin.reservations_list') }}">
+                                <i class="fas fa-calendar-alt me-2"></i>Réservations
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 admin-content">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }} alert-dismissible fade show mt-3" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

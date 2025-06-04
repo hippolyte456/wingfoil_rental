@@ -26,11 +26,21 @@ def create_app(config_name='development'):
     from .routes.auth import bp as auth_bp
     from .routes.equipment import bp as equipment_bp
     from .routes.seo import bp as seo_bp
+    from .routes.admin import bp as admin_bp
     
     app.register_blueprint(main_bp)
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(equipment_bp, url_prefix='/equipment')
     app.register_blueprint(seo_bp)
+    app.register_blueprint(admin_bp, url_prefix='/admin')
+    
+    # Accès aux constantes LOGO_PATH et CONTACT_EMAIL dans les templates
+    @app.context_processor
+    def inject_constants():
+        return {
+            "LOGO_PATH": app.config.get('LOGO_PATH', 'img/logo/logo_wingfoil-rm-bg.png'),
+            "CONTACT_EMAIL": app.config.get('CONTACT_EMAIL', 'contact@wing4all.fr')
+        }
     
     with app.app_context():
         db.create_all()
