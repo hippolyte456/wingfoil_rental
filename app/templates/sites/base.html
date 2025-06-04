@@ -73,12 +73,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('main.contact', site_slug=site.slug) }}">Contact</a>
                     </li>
-                    
-                    {% if current_user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('equipment.my_reservations') }}">Mes Réservations</a>
-                    </li>
-                    {% endif %}
                     {% else %}
                     <!-- Menu de secours si pas de site spécifié -->
                     <li class="nav-item">
@@ -95,10 +89,11 @@
                     </li>
                     {% endif %}
                 </ul>
-                {% if current_user.is_authenticated %}
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <!-- Right aligned auth buttons (desktop only) -->
+                <div class="d-none d-lg-flex ms-auto auth-buttons" style="justify-content: flex-end !important;">
+                    {% if current_user.is_authenticated %}
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
                             <i class="fas fa-user-circle me-1"></i> {{ current_user.name }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -109,22 +104,16 @@
                             {% endif %}
                             <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Déconnexion</a></li>
                         </ul>
-                    </li>
-                </ul>
-                {% else %}
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-light btn-sm me-2" href="{{ url_for('auth.login') }}">
-                            <i class="fas fa-sign-in-alt me-1"></i> Connexion
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-light btn-sm" href="{{ url_for('auth.register') }}">
-                            <i class="fas fa-user-plus me-1"></i> Inscription
-                        </a>
-                    </li>
-                </ul>
-                {% endif %}
+                    </div>
+                    {% else %}
+                    <a class="nav-link btn btn-outline-light btn-sm me-2" href="{{ url_for('auth.login') }}">
+                        <i class="fas fa-sign-in-alt me-1"></i> Connexion
+                    </a>
+                    <a class="nav-link btn btn-light btn-sm" href="{{ url_for('auth.register') }}">
+                        <i class="fas fa-user-plus me-1"></i> Inscription
+                    </a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </nav>
@@ -157,8 +146,10 @@
                         <li><a href="{{ url_for('main.formules', site_slug=site.slug) }}">Formules</a></li>
                         <li><a href="{{ url_for('equipment.equipment_list', site_slug=site.slug) }}">Locations</a></li>
                         <li><a href="{{ url_for('main.franchise') }}">Réseau Wing4All</a></li>
+                        <li><a href="{{ url_for('main.reseau') }}" class="fw-bold"><i class="fas fa-map-marker-alt me-1"></i> Autres sites Wing4All</a></li>
                         {% else %}
                         <li><a href="{{ url_for('main.franchise') }}">Franchise</a></li>
+                        <li><a href="{{ url_for('main.reseau') }}">Réseau</a></li>
                         <li><a href="{{ url_for('main.actualites') }}">Actualités</a></li>
                         <li><a href="{{ url_for('main.conseils') }}">Conseils</a></li>
                         <li><a href="{{ url_for('main.contact_franchise') }}">Contact</a></li>
