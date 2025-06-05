@@ -402,3 +402,25 @@ def partenariats():
         description="Découvrez les partenariats de Wing4All pour la promotion d'une pratique éco-responsable et accessible du wingfoil."
     )
     return render_template('franchise/partenariats.html', meta_tags=meta_tags)
+
+@bp.route('/rejoindre')
+def rejoindre():
+    meta_tags = generate_meta_tags(
+        title="Rejoindre le réseau Wing4All - Devenir franchisé",
+        description="Découvrez comment rejoindre le réseau Wing4All et ouvrir votre propre franchise de location de wingfoil. Accompagnement complet et matériel fourni pour un démarrage réussi."
+    )
+    structured_data = generate_structured_data("Organization", {})
+    return render_template('franchise/rejoindre.html', 
+                          meta_tags=meta_tags,
+                          structured_data=structured_data)
+
+@bp.route('/rejoindre/etapes')
+def rejoindre_etapes():
+    meta_tags = generate_meta_tags(
+        title="Les étapes pour rejoindre Wing4All - Processus détaillé",
+        description="Le parcours détaillé pour rejoindre le réseau Wing4All : formulation du projet, étude de marché, budget, aspects juridiques, formation et lancement."
+    )
+    structured_data = generate_structured_data("Organization", {})
+    return render_template('franchise/rejoindre/etapes.html', 
+                          meta_tags=meta_tags,
+                          structured_data=structured_data)
