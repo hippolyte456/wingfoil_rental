@@ -1,0 +1,228 @@
+{% extends 'franchise/base_franchise.html' %}
+{% block title %}Rejoindre le réseau Wing4All{% endblock %}
+
+{% block meta_description %}Découvrez comment rejoindre le réseau Wing4All et ouvrir votre propre franchise de location de wingfoil. Accompagnement complet, formation et matériel fourni pour un démarrage réussi.{% endblock %}
+
+{% block meta_keywords %}franchise wingfoil, rejoindre wing4all, ouvrir location wingfoil, réseau wing4all, entreprendre wingfoil, devenir franchisé{% endblock %}
+
+{% block head %}
+<style>
+    .advantages-item {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .advantages-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .advantages-icon {
+        font-size: 30px;
+        color: var(--primary-color);
+        margin-right: 20px;
+    }
+    
+    .cta-section {
+        background-color: rgba(0, 102, 204, 0.1);
+        border-radius: 15px;
+        padding: 40px;
+        margin-top: 50px;
+        text-align: center;
+    }
+    
+    .steps-preview {
+        position: relative;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .steps-preview:hover {
+        transform: translateY(-5px);
+    }
+    
+    .steps-icon {
+        font-size: 50px;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+    }
+    
+    .feature-card {
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .feature-icon {
+        font-size: 40px;
+        color: var(--primary-color);
+        margin-bottom: 15px;
+    }
+    
+    .feature-content {
+        flex-grow: 1;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="content-box p-4">
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bold">Rejoindre le Réseau Wing4All</h1>
+            <p class="lead">Partagez votre passion pour le wingfoil</p>
+            <hr class="my-4">
+        </div>
+        
+        <!-- Intro section -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-10">
+                <div class="card bg-light border-0">
+                    <div class="card-body p-4">
+                        <h2 class="mb-4">Pourquoi rejoindre Wing4All ?</h2>
+                        <p>Premier réseau de location de wingfoil en France, on vous accompagne pour lancer votre business. On vous fournit tout ce qu'il faut pour démarrer rapidement et sans stress.</p>
+                        <p>Notre but ? Développer le wingfoil partout en France avec des services de qualité adaptés à tous les niveaux.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Process section with link to detailed steps -->
+        <div class="steps-preview">
+            <div class="steps-icon">
+                <i class="fas fa-route"></i>
+            </div>
+            <h2 class="mb-4">Comment ça marche ?</h2>
+            <p class="mb-4">On a mis en place un parcours en 6 étapes simple et efficace, de l'idée au lancement de votre franchise.</p>
+            <div class="d-flex justify-content-center">
+                <a href="{{ url_for('main.rejoindre_etapes') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-arrow-right me-2"></i> Voir les étapes en détail
+                </a>
+            </div>
+        </div>
+        
+       
+        <!-- Pack franchisé section -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-10">
+                <div class="card bg-light border-0">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">Notre pack franchisé tout inclus</h2>
+                    </div>
+                    <div class="card-body p-4">
+                        <h3 class="mb-4">Ce qu'on vous offre pour réussir</h3>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="advantages-item h-100">
+                                    <div class="advantages-icon">
+                                        <i class="fas fa-box-open"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Matériel complet</h4>
+                                        <p>Wings, planches, foils et accessoires de qualité pour tous les niveaux. Du matériel fiable et performant pour satisfaire vos clients.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="advantages-item h-100">
+                                    <div class="advantages-icon">
+                                        <i class="fas fa-globe"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Présence web</h4>
+                                        <p>Votre page dédiée sur notre site, référencement local et inclusion dans toutes nos communications nationales.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="advantages-item h-100">
+                                    <div class="advantages-icon">
+                                        <i class="fas fa-bullhorn"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Communication</h4>
+                                        <p>Logo personnalisé, enseigne, flyers, contenus réseaux sociaux et stratégie marketing locale clé en main.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="advantages-item h-100">
+                                    <div class="advantages-icon">
+                                        <i class="fas fa-cash-register"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Système de paiement</h4>
+                                        <p>Solution de paiement intégrée à notre plateforme de réservation pour faciliter vos encaissements.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="advantages-item h-100">
+                                    <div class="advantages-icon">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Cadre légal</h4>
+                                        <p>Contrats, CGV, assurances et accompagnement pour toutes les démarches administratives.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="advantages-item h-100">
+                                    <div class="advantages-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Communauté</h4>
+                                        <p>Rejoignez les pros du wingfoil, partagez vos expériences et participez à nos événements réseau.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <h2 class="mb-4">Prêt à vous lancer ?</h2>
+            <p class="lead mb-4">Contactez-nous pour discuter de votre projet et voir comment on peut vous aider à démarrer.</p>
+            <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+                <a href="{{ url_for('main.rejoindre_etapes') }}" class="btn btn-outline-primary btn-lg mb-3 mb-md-0">
+                    <i class="fas fa-list-ol me-2"></i> Les étapes en détail
+                </a>
+                <a href="{{ url_for('main.contact_franchise') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-paper-plane me-2"></i> Nous contacter
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
